@@ -1,0 +1,353 @@
+@import url("https://fonts.googleapis.com/css2?family=Tsukimi+Rounded&display=swap");
+
+body {
+    margin: 0;
+    font-family: "Tsukimi Rounded", serif;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    /* alto para que esté encima */
+    background-color: white;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #eee;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.2);
+}
+
+.search-form {
+    flex: 1;
+    max-width: 800px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    font-family: "Tsukimi Rounded", serif;
+}
+
+.nav {
+    margin-top: 90px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    position: relative;
+    border-bottom: 3px solid transparent;
+    /* espacio reservado */
+    padding-bottom: 3px;
+    transition: border-color 0.3s;
+}
+
+nav a:hover {
+    color: #0e1523;
+    border-bottom: 3px solid #c0c0c2;
+    padding-bottom: 3px;
+    /* separa el texto de la línea */
+}
+
+
+.user-area {
+    display: flex;
+    gap: 1rem;
+}
+
+.login-btn {
+    background-color: #ff6b2d;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: "Tsukimi Rounded", serif;
+}
+
+.cuenta-btn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: "Tsukimi Rounded", serif;
+    transition: 0.3s;
+}
+
+.cuenta-btn:hover {
+    color: #ff6b2d;
+}
+
+/* Sección Hero */
+.hero {
+    position: relative;
+    padding: 4rem 2rem;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    /* evita que cosas se desborden */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    padding: 1rem;
+    margin: 0 auto;
+    /* centra horizontalmente */
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.explorar-btn {
+    background-color: #ff6b2d;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.crear-cuenta-btn {
+    background: white;
+    color: #333;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Imagen de fondo */
+.hero img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Capa oscura encima de la imagen */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+/* Categorías */
+.categorias-titulo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1c1c1c;
+    margin: 2rem 0 1rem 0;
+    padding-left: 20px;
+}
+
+.categorias-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 0 20px 40px 20px;
+}
+
+.categoria-card {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.categoria-card:hover {
+    transform: scale(1.05);
+}
+
+.categoria-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.categoria-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.footer {
+    background-color: #0e1523;
+    color: #ccc;
+    font-family: 'Poppins', sans-serif;
+    padding: 40px 30px;
+}
+
+.footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.footer-logo-section {
+    max-width: 250px;
+}
+
+.footer-logo {
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.footer-logo-section p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.footer-social {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social i {
+    font-size: 18px;
+    background: #1c2431;
+    padding: 10px;
+    border-radius: 50%;
+    color: #ccc;
+    transition: background 0.3s;
+}
+
+.footer-social i:hover {
+    background: #2c3e50;
+}
+
+.footer-section {
+    min-width: 150px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.footer-section a {
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: #fff;
+}
+
+.footer-divider {
+    border: none;
+    border-top: 1px solid #222c3c;
+    margin: 30px 0;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.footer-legal {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.footer-legal a {
+    color: #ccc;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.footer-legal a:hover {
+    color: #fff;
+}
+
+.legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-payments {
+    display: flex;
+    gap: 15px;
+    font-size: 24px;
+    color: #ccc;
+}
