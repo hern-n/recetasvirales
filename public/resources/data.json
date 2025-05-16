@@ -1,7 +1,7 @@
 {
     "taskBar": {
         "logo": {
-            "src": "/resources/logo.png",
+            "src": "/public/resources/mainPage/logo.png",
             "alt": "Logo"
         },
         "search": {
@@ -22,7 +22,7 @@
         ]
     },
     "hero": {
-        "imagen": "/resources/background_image.jpg",
+        "imagen": "/public/resources/mainPage/background_image.jpg",
         "alt": "Fondo de Hero",
         "titulo": "Descubre y comparte las mejores recetas del mundo",
         "descripcion": "Explora miles de recetas, guarda tus favoritas y comparte tus creaciones culinarias con nuestra comunidad.",
@@ -36,27 +36,27 @@
         "lista": [
             {
                 "nombre": "Pasta",
-                "imagen": "/resources/pastas.jpg"
+                "imagen": "/public/resources/mainPage/pastas.jpg"
             },
             {
                 "nombre": "Postres",
-                "imagen": "/resources/postres.jpg"
+                "imagen": "/public/resources/mainPage/postres.jpg"
             },
             {
                 "nombre": "Ensaladas",
-                "imagen": "/resources/ensaladas.jpg"
+                "imagen": "/public/resources/mainPage/ensaladas.jpg"
             },
             {
                 "nombre": "Carnes",
-                "imagen": "/resources/carnes.jpg"
+                "imagen": "/public/resources/mainPage/carnes.jpg"
             },
             {
                 "nombre": "Mariscos",
-                "imagen": "/resources/mariscos.jpg"
+                "imagen": "/public/resources/mainPage/mariscos.jpg"
             },
             {
                 "nombre": "Vegetariano",
-                "imagen": "/resources/vegetariano.jpg"
+                "imagen": "/public/resources/mainPage/vegetariano.jpg"
             }
         ]
     },

@@ -7,7 +7,7 @@ export default function handler(req, res) {
         return;
     }
 
-    const filePath = join(process.cwd(), 'public', 'index.html');
+    const filePath = join(process.cwd(), '/pages/MainPage', 'index.html');
     const html = readFileSync(filePath, 'utf8');
 
     res.setHeader('Content-Type', 'text/html');
