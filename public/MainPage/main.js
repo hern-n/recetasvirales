@@ -217,7 +217,7 @@ function createFooter(info) {
     document.body.appendChild(footer);
 }
 
-fetch("/public/resources/data.json")
+fetch("/public/MainPage/data.json")
     .then(res => res.json())
     .then(data => {
         createTaskBar(data.taskBar);

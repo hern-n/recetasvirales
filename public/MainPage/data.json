@@ -1,7 +1,7 @@
 {
     "taskBar": {
         "logo": {
-            "src": "/public/resources/mainPage/logo.png",
+            "src": "/public/MainPage/resources/logo.png",
             "alt": "Logo"
         },
         "search": {
