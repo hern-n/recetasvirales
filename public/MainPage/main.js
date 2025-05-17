@@ -225,3 +225,11 @@ fetch('/MainPage/data.json')
         createCategories(data.categorias);
         createFooter(data.footer);
     });
+
+fetch('/api/database?id=1')
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+        // Mostrar receta en la página
+    })
+    .catch(err => console.error(err));
