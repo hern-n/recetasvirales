@@ -24,7 +24,7 @@ export default async function handler(req, res) {
                 return res.status(404).json({ error: 'Receta no encontrada por name' });
             }
         } else if (category) {
-            result = await db.sql`SELECT * FROM recetas WHERE titulo LIKE ${'%' + category + '%'};`;
+            result = await db.sql`SELECT * FROM recetas WHERE categoria LIKE ${'%' + category + '%'};`;
             if (result.length === 0) {
                 return res.status(404).json({ error: 'No se encontraron recetas en esa categoría' });
             }
