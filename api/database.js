@@ -1,7 +1,7 @@
+// /api/recetas.js
 import { Database } from '@sqlitecloud/drivers';
 
-const dbUrl = process.env.SQLITECLOUD_URL;
-const db = new Database(dbUrl);
+const db = new Database("sqlitecloud://cgaa8pjahk.g5.sqlite.cloud:8860/recetas.sqlite?apikey=APxGiL3Qa5ljtr86NfYCJg8Ev08bvBcg77nEmCICvDg");
 
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
