@@ -1,33 +1,26 @@
-// /api/recetas.js
 import { Database } from '@sqlitecloud/drivers';
 
-const db = new Database("sqlitecloud://cgaa8pjahk.g5.sqlite.cloud:8860/recetas.sqlite?apikey=APxGiL3Qa5ljtr86NfYCJg8Ev08bvBcg77nEmCICvDg");
+const dbUrl = process.env.SQLITECLOUD_URL;
+const db = new Database(dbUrl);
 
 export default async function handler(req, res) {
-  if (req.method !== 'GET') {
-    res.status(405).json({ error: 'Método no permitido' });
-    return;
-  }
+    try {
+        if (req.method !== 'GET') {
+            return res.status(405).json({ error: 'Método no permitido' });
+        }
+        const { id } = req.query;
+        if (!id) {
+            return res.status(400).json({ error: 'Falta parámetro id' });
+        }
 
-  const { id } = req.query;
-  if (!id) {
-    res.status(400).json({ error: 'Falta el parámetro id' });
-    return;
-  }
+        const result = await db.sql`SELECT * FROM recetas WHERE id = ${id};`;
+        if (result.length === 0) {
+            return res.status(404).json({ error: 'Receta no encontrada' });
+        }
 
-  try {
-    const result = await db.sql`SELECT * FROM recetas WHERE id = ${id};`;
-    if (result.length === 0) {
-      res.status(404).json({ error: 'Receta no encontrada' });
-      return;
+        res.status(200).json(result[0]);
+    } catch (error) {
+        console.error('Error en API /api/database:', error);
+        res.status(500).json({ error: 'Error interno del servidor' });
     }
-    const receta = result[0];
-    receta.ingredientes = JSON.parse(receta.ingredientes);
-    receta.pasos = JSON.parse(receta.pasos);
-    receta.fotos = JSON.parse(receta.fotos);
-
-    res.status(200).json(receta);
-  } catch (error) {
-    res.status(500).json({ error: 'Error en la base de datos' });
-  }
 }
