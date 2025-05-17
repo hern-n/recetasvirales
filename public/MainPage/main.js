@@ -170,4 +170,6 @@ fetch('/MainPage/data.json')
         createFooter(data.footer);
     });
 
-contactDatabase("/api/database?id=1")
+contactDatabase("/api/database?id=1");
+contactDatabase("/api/database?name=Tortilla");
+contactDatabase("/api/database?categoria=plato");
