@@ -1,4 +1,4 @@
-import { contactDatabase, createTaskBar } from "public/functions.js";
+import { contactDatabase, createTaskBar } from "/public/functions.js";
 
 function createHeroSection(info) {
     const hero = document.createElement("section");
