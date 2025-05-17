@@ -172,4 +172,4 @@ fetch('/MainPage/data.json')
 
 contactDatabase("/api/database?id=1");
 contactDatabase("/api/database?name=Tortilla");
-contactDatabase("/api/database?categoria=plato");
+contactDatabase("/api/database?category=platos");

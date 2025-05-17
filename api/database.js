@@ -9,7 +9,7 @@ export default async function handler(req, res) {
             return res.status(405).json({ error: 'Método no permitido' });
         }
 
-        const { id, nombre, categoria } = req.query;
+        const { id, name, category } = req.query;
 
         let result;
 
@@ -18,18 +18,18 @@ export default async function handler(req, res) {
             if (result.length === 0) {
                 return res.status(404).json({ error: 'Receta no encontrada por ID' });
             }
-        } else if (nombre) {
-            result = await db.sql`SELECT * FROM recetas WHERE titulo LIKE ${'%' + nombre + '%'};`;
+        } else if (name) {
+            result = await db.sql`SELECT * FROM recetas WHERE titulo LIKE ${'%' + name + '%'};`;
             if (result.length === 0) {
-                return res.status(404).json({ error: 'Receta no encontrada por nombre' });
+                return res.status(404).json({ error: 'Receta no encontrada por name' });
             }
-        } else if (categoria) {
-            result = await db.sql`SELECT * FROM recetas WHERE categoria = ${categoria};`;
+        } else if (category) {
+            result = await db.sql`SELECT * FROM recetas WHERE category = ${category};`;
             if (result.length === 0) {
                 return res.status(404).json({ error: 'No se encontraron recetas en esa categoría' });
             }
         } else {
-            return res.status(400).json({ error: 'Falta parámetro id, nombre o categoria' });
+            return res.status(400).json({ error: 'Falta parámetro id, name o category' });
         }
 
         res.status(200).json(result);
