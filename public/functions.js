@@ -41,19 +41,7 @@ export function createTaskBar(info) {
 
     header.appendChild(headerTop);
 
-    // --- PARTE INFERIOR (barra de navegación) ---
-    const headerBottom = document.createElement("nav");
-    headerBottom.className = "nav";
-
-    info.nav.forEach(text => {
-        const link = document.createElement("a");
-        link.href = "#";
-        link.textContent = text;
-        headerBottom.appendChild(link);
-    });
-
     document.body.appendChild(header);
-    document.body.appendChild(headerBottom);
 }
 
 export function contactDatabase(parametrer) {

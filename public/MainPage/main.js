@@ -1,6 +1,19 @@
 import { contactDatabase, createTaskBar } from "../functions.js";
 
 function createHeroSection(info) {
+
+     // --- PARTE INFERIOR (barra de navegación) ---
+    const headerBottom = document.createElement("nav");
+    headerBottom.className = "nav";
+
+    info.nav.forEach(text => {
+        const link = document.createElement("a");
+        link.href = "#";
+        link.textContent = text;
+        headerBottom.appendChild(link);
+    });
+    document.body.appendChild(headerBottom);
+
     const hero = document.createElement("section");
     hero.className = "hero";
 
