@@ -1,7 +1,7 @@
 import { contactDatabase, createTaskBar } from "../functions.js";
 
-function createHeroSection(info) {
-
+function createButtonTaskBar(info) {
+    
      // --- PARTE INFERIOR (barra de navegación) ---
     const headerBottom = document.createElement("nav");
     headerBottom.className = "nav";
@@ -13,7 +13,9 @@ function createHeroSection(info) {
         headerBottom.appendChild(link);
     });
     document.body.appendChild(headerBottom);
+}
 
+function createHeroSection(info) {
     const hero = document.createElement("section");
     hero.className = "hero";
 
@@ -178,6 +180,7 @@ fetch('/MainPage/data.json')
     .then(res => res.json())
     .then(data => {
         createTaskBar(data.taskBar);
+        createButtonTaskBar(data);
         createHeroSection(data.hero);
         createCategories(data.categorias);
         createFooter(data.footer);
