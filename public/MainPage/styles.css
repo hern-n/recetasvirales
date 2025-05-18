@@ -31,8 +31,9 @@ body {
 .logo {
     position: relative;      /* referencia para la imagen absoluta */
     width: auto;            /* tamaño fijo del contenedor */
-    height: 40px;            /* alto fijo igual que antes */
+    height: 30px;            /* alto fijo igual que antes */
     overflow: visible;       /* que se vea lo que sobresalga */
+    padding-left: 10px;
 }
 
 .logo img {
