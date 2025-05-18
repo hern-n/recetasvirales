@@ -180,7 +180,7 @@ fetch('/MainPage/data.json')
     .then(res => res.json())
     .then(data => {
         createTaskBar(data.taskBar);
-        createButtonTaskBar(data);
+        createButtonTaskBar(data.taskBar);
         createHeroSection(data.hero);
         createCategories(data.categorias);
         createFooter(data.footer);
