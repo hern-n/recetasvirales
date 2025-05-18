@@ -31,7 +31,7 @@ body {
 .logo {
     position: relative;      /* referencia para la imagen absoluta */
     width: auto;            /* tamaño fijo del contenedor */
-    height: 30px;            /* alto fijo igual que antes */
+    height: 40px;            /* alto fijo igual que antes */
     overflow: visible;       /* que se vea lo que sobresalga */
     padding-left: 10px;
 }
@@ -40,7 +40,7 @@ body {
     position: absolute;      /* sacamos la imagen del flujo */
     top: 50%;                /* centrado vertical */
     left: 50%;               /* centrado horizontal */
-    height: 80px;            /* más grande que el contenedor */
+    height: 50px;            /* más grande que el contenedor */
     width: auto;
     transform: translate(-50%, -50%);
     transition: transform 0.3s ease;
