@@ -103,9 +103,11 @@ function createCategories() {
     document.body.appendChild(container);
 }
 
+createTaskBar();
 createButtonTaskBar();
 createHeroSection();
 createCategories();
+createFooter();
 
 // Consultas a la "base de datos"
 contactDatabase("/api/database?id=1");
