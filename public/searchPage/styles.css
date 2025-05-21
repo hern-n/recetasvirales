@@ -4,6 +4,8 @@ body {
     margin: 0;
     font-family: "Tsukimi Rounded", serif;
 }
+
+
 /*Partes comunes*/
 .header {
     position: fixed;
@@ -208,158 +210,59 @@ body {
 }
 
 /*Fin de las partes comunes*/
-.nav {
-    margin-top: 90px;
-    margin-bottom: 10px;
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
 
-.nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-    position: relative;
-    border-bottom: 3px solid transparent;
-    /* espacio reservado */
-    padding-bottom: 3px;
-    transition: border-color 0.3s;
-}
 
-nav a:hover {
-    color: #0e1523;
-    border-bottom: 3px solid #c0c0c2;
-    padding-bottom: 3px;
-    /* separa el texto de la línea */
-}
-
-/* Sección Hero */
-.hero {
-    position: relative;
-    padding: 4rem 2rem;
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-    overflow: hidden;
-    /* evita que cosas se desborden */
-}
-
-.hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 700px;
+.recetas-grid {
+    margin-top: 73px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
     padding: 1rem;
-    margin: 0 auto;
-    /* centra horizontalmente */
+    font-family: sans-serif;
+    max-width: 1400px;
 }
 
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 1rem;
-}
-
-.explorar-btn {
-    background-color: #ff6b2d;
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.crear-cuenta-btn {
-    background: white;
-    color: #333;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* Imagen de fondo */
-.hero img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-}
-
-/* Capa oscura encima de la imagen */
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 0;
-}
-
-/* Categorías */
-.categorias-titulo {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #1c1c1c;
-    margin: 2rem 0 1rem 0;
-    padding-left: 20px;
-}
-
-.categorias-lista {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    padding: 0 20px 40px 20px;
-}
-
-.categoria-card {
-    position: relative;
-    width: 160px;
-    height: 160px;
+.receta-card {
+    background: #fff;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.categoria-card:hover {
-    transform: scale(1.05);
-}
-
-.categoria-card img {
-    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
     height: 100%;
+    transition: transform 0.2s;
+}
+
+.receta-card:hover {
+    transform: translateY(-5px);
+}
+
+.receta-card img {
+    width: 100%;
+    height: 160px;
     object-fit: cover;
 }
 
-.categoria-overlay {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 10px;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.4);
-    color: white;
-    font-weight: 600;
-    font-size: 1.1rem;
+.receta-info {
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex-grow: 1;
+}
+
+.receta-titulo {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+    font-family: "Tsukimi Rounded", serif;
+}
+
+.receta-tiempo,
+.receta-personas {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0;
+    font-family: "Tsukimi Rounded", serif;
 }

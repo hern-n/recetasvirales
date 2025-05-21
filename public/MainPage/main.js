@@ -1,49 +1,56 @@
-import { contactDatabase, createTaskBar } from "../functions.js";
+import { contactDatabase, createTaskBar, createFooter } from "../functions.js";
 
-function createButtonTaskBar(info) {
-    
-     // --- PARTE INFERIOR (barra de navegación) ---
+function createButtonTaskBar() {
     const headerBottom = document.createElement("nav");
     headerBottom.className = "nav";
 
-    info.nav.forEach(text => {
+    [
+        "Inicio",
+        "Categorías",
+        "Recetas populares",
+        "Recetas rápidas",
+        "Cocina internacional",
+        "Postres",
+        "Saludable"
+    ].forEach(text => {
         const link = document.createElement("a");
         link.href = "#";
         link.textContent = text;
         headerBottom.appendChild(link);
     });
+
     document.body.appendChild(headerBottom);
 }
 
-function createHeroSection(info) {
+function createHeroSection() {
     const hero = document.createElement("section");
     hero.className = "hero";
 
     const backgroundImg = document.createElement("img");
-    backgroundImg.src = info.imagen;
-    backgroundImg.alt = info.alt;
+    backgroundImg.src = "/MainPage/resources/background_image.jpg";
+    backgroundImg.alt = "Fondo de Hero";
     hero.appendChild(backgroundImg);
 
     const content = document.createElement("div");
     content.className = "hero-content";
 
     const h1 = document.createElement("h1");
-    h1.textContent = info.titulo;
+    h1.textContent = "Descubre y comparte las mejores recetas del mundo";
     content.appendChild(h1);
 
     const p = document.createElement("p");
-    p.textContent = info.descripcion;
+    p.textContent = "Explora miles de recetas, guarda tus favoritas y comparte tus creaciones culinarias con nuestra comunidad.";
     content.appendChild(p);
 
     const buttons = document.createElement("div");
     buttons.className = "hero-buttons";
 
     const explorar = document.createElement("button");
-    explorar.textContent = info.botones.explorar;
+    explorar.textContent = "Explorar recetas";
     explorar.className = "explorar-btn";
 
     const crearCuenta = document.createElement("button");
-    crearCuenta.textContent = info.botones.crearCuenta;
+    crearCuenta.textContent = "Crear cuenta";
     crearCuenta.className = "crear-cuenta-btn";
 
     buttons.appendChild(explorar);
@@ -55,18 +62,27 @@ function createHeroSection(info) {
     document.body.appendChild(hero);
 }
 
-function createCategories(info) {
+function createCategories() {
     const container = document.createElement("div");
 
     const titulo = document.createElement("h2");
     titulo.className = "categorias-titulo";
-    titulo.textContent = info.titulo;
+    titulo.textContent = "Categorías populares";
     container.appendChild(titulo);
 
     const lista = document.createElement("div");
     lista.className = "categorias-lista";
 
-    info.lista.forEach(cat => {
+    const categorias = [
+        { nombre: "Pasta", imagen: "/MainPage/resources/pastas.jpg" },
+        { nombre: "Postres", imagen: "/MainPage/resources/postres.jpg" },
+        { nombre: "Ensaladas", imagen: "/MainPage/resources/ensaladas.jpg" },
+        { nombre: "Carnes", imagen: "/MainPage/resources/carnes.jpg" },
+        { nombre: "Pescados", imagen: "/MainPage/resources/mariscos.jpg" },
+        { nombre: "Vegetariano", imagen: "/MainPage/resources/vegetariano.jpg" }
+    ];
+
+    categorias.forEach(cat => {
         const card = document.createElement("div");
         card.className = "categoria-card";
 
@@ -87,105 +103,11 @@ function createCategories(info) {
     document.body.appendChild(container);
 }
 
-function createFooter(info) {
-    const footer = document.createElement("footer");
-    footer.className = "footer";
+createButtonTaskBar();
+createHeroSection();
+createCategories();
 
-    const top = document.createElement("div");
-    top.className = "footer-top";
-
-    const logoSection = document.createElement("div");
-    logoSection.className = "footer-logo-section";
-
-    const logo = document.createElement("h2");
-    logo.textContent = info.logo;
-    logo.className = "footer-logo";
-    logoSection.appendChild(logo);
-
-    const description = document.createElement("p");
-    description.textContent = info.descripcion;
-    logoSection.appendChild(description);
-
-    const social = document.createElement("div");
-    social.className = "footer-social";
-    info.redes.forEach(icon => {
-        const i = document.createElement("i");
-        i.className = `fab ${icon}`;
-        social.appendChild(i);
-    });
-    logoSection.appendChild(social);
-    top.appendChild(logoSection);
-
-    info.secciones.forEach(section => {
-        const div = document.createElement("div");
-        div.className = "footer-section";
-
-        const title = document.createElement("h3");
-        title.textContent = section.titulo;
-        div.appendChild(title);
-
-        section.enlaces.forEach(item => {
-            const a = document.createElement("a");
-            a.href = "#";
-            a.textContent = item;
-            div.appendChild(a);
-        });
-
-        top.appendChild(div);
-    });
-
-    footer.appendChild(top);
-
-    const line = document.createElement("hr");
-    line.className = "footer-divider";
-    footer.appendChild(line);
-
-    const bottom = document.createElement("div");
-    bottom.className = "footer-bottom";
-
-    const legal = document.createElement("div");
-    legal.className = "footer-legal";
-
-    const copy = document.createElement("p");
-    copy.innerHTML = info.copy;
-    legal.appendChild(copy);
-
-    const links = document.createElement("div");
-    links.className = "legal-links";
-    info.legales.forEach(txt => {
-        const a = document.createElement("a");
-        a.href = "#";
-        a.textContent = txt;
-        links.appendChild(a);
-    });
-    legal.appendChild(links);
-
-    bottom.appendChild(legal);
-
-    const payments = document.createElement("div");
-    payments.className = "footer-payments";
-    info.pagos.forEach(icon => {
-        const i = document.createElement("i");
-        i.className = `fab ${icon}`;
-        payments.appendChild(i);
-    });
-
-    bottom.appendChild(payments);
-    footer.appendChild(bottom);
-
-    document.body.appendChild(footer);
-}
-
-fetch('/MainPage/data.json')
-    .then(res => res.json())
-    .then(data => {
-        createTaskBar(data.taskBar);
-        createButtonTaskBar(data.taskBar);
-        createHeroSection(data.hero);
-        createCategories(data.categorias);
-        createFooter(data.footer);
-    });
-
+// Consultas a la "base de datos"
 contactDatabase("/api/database?id=1");
 contactDatabase("/api/database?name=Tortilla");
 contactDatabase("/api/database?category=platos_completos");
