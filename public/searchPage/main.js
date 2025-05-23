@@ -70,11 +70,31 @@ if (params.has('id')) {
 await contactDatabase(url)
     .then(data => {
         if (!data || data.length === 0) {
-            document.body.insertAdjacentHTML('beforeend', `
-                <div class="no-recetas" style="color: black; font-weight: bold; font-family: 'Tsukimi Rounded', serif; text-align: center; margin: 20px;">
-                    No se han encontrado recetas.
-                </div>
-            `);
+            // Crear el div con createElement
+            const noRecetasDiv = document.createElement('div');
+            noRecetasDiv.className = 'no-recetas';
+            noRecetasDiv.textContent = 'No se han encontrado recetas.';
+            
+            // Estilos para que no se superponga, margen suficiente desde el header fijo y centrado
+            Object.assign(noRecetasDiv.style, {
+                color: 'black',
+                fontWeight: 'bold',
+                fontFamily: '"Tsukimi Rounded", serif',
+                textAlign: 'center',
+                marginTop: '100px',  // para dejar espacio desde la taskbar fija
+                marginBottom: '20px',
+                fontSize: '1.2rem',
+                padding: '20px',
+            });
+
+            // Insertar antes del footer (suponiendo que existe un footer con clase 'footer')
+            const footer = document.querySelector('.footer');
+            if (footer) {
+                footer.parentNode.insertBefore(noRecetasDiv, footer);
+            } else {
+                // Si no hay footer, simplemente lo añadimos al body
+                document.body.appendChild(noRecetasDiv);
+            }
         } else {
             renderRecetas(data);
         }
@@ -82,5 +102,6 @@ await contactDatabase(url)
     .catch(err => {
         console.error("Error al cargar recetas:", err);
     });
+
 
 createFooter();
