@@ -50,15 +50,12 @@ function renderRecetas(data) {
 
 createTaskBar();
 
-await contactDatabase("/api/database?id=1")
+const nombre = "Tortilla de patatas";
+const url = "/api/database?name=" + encodeURIComponent(nombre);
+
+await contactDatabase("url")
     .then(data => {
         renderRecetas(data);
     });
 
 createFooter();
-
-
-await contactDatabase("/api/database?id=1")
-    .then(data => {
-        console.log(data);
-    });
