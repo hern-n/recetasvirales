@@ -48,14 +48,48 @@ function renderRecetas(data) {
     document.body.appendChild(container);
 }
 
+let infoSearch; // Aquí debe venir la URL o query string que buscas, ejemplo: "?id=1" o "?name=Tortilla" o "?category=Postres"
 createTaskBar();
 
-const nombre = "Tortilla de patatas";
-const url = "/api/database?name=" + encodeURIComponent(nombre);
+let url;
+
+if (infoSearch) {
+    // Quitar el posible '?' del inicio
+    const query = infoSearch.startsWith('?') ? infoSearch.substring(1) : infoSearch;
+    const params = new URLSearchParams(query);
+
+    if (params.has('id')) {
+        const id = params.get('id');
+        url = "/api/database?id=" + encodeURIComponent(id);
+    } else if (params.has('name')) {
+        const nombre = params.get('name');
+        url = "/api/database?name=" + encodeURIComponent(nombre);
+    } else if (params.has('category')) {
+        const categoria = params.get('category');
+        url = "/api/database?category=" + encodeURIComponent(categoria);
+    } else {
+        // Si no hay parámetros conocidos, puedes usar un valor por defecto o vacío
+        url = "/api/database";
+    }
+} else {
+    url = "/api/database"; // fallback por si infoSearch está vacío o undefined
+}
 
 await contactDatabase(url)
     .then(data => {
-        renderRecetas(data);
+        if (!data || data.length === 0) {
+            // Mostrar mensaje de "No se han encontrado recetas"
+            document.body.insertAdjacentHTML('beforeend', `
+                <div class="no-recetas" style="color: black; font-weight: bold; font-family: 'Tsukimi Rounded', serif; text-align: center; margin: 20px;">
+                    No se han encontrado recetas.
+                </div>
+            `);
+        } else {
+            renderRecetas(data);
+        }
+    })
+    .catch(err => {
+        console.error("Error al cargar recetas:", err);
     });
 
 createFooter();

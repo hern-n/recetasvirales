@@ -95,8 +95,10 @@ function createCategories() {
         overlay.textContent = cat.nombre;
 
         card.onclick = () => {
-                    window.location.href = `../searchPage/index.html`;
-                };
+            // Codificamos la categoría para la URL y redirigimos
+            const categoriaCodificada = encodeURIComponent(cat.nombre);
+            window.location.href = `../searchPage/index.html?category=${categoriaCodificada}`;
+        };
 
         card.appendChild(img);
         card.appendChild(overlay);
@@ -113,7 +115,3 @@ createHeroSection();
 createCategories();
 createFooter();
 
-// Consultas a la "base de datos"
-contactDatabase("/api/database?id=1");
-contactDatabase("/api/database?name=Tortilla");
-contactDatabase("/api/database?category=platos_completos");
