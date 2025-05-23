@@ -48,11 +48,12 @@ function renderRecetas(data) {
     document.body.appendChild(container);
 }
 
-createTaskBar();
+async function init() {
+    const rawData = await contactDatabase("/api/database?category=platos_completos");
+    const data = convertData(rawData);
+    createTaskBar();
+    renderRecetas(data);
+    createFooter();
+}
 
-renderRecetas(convertData(contactDatabase("/api/database?category=platos_completos")));
-
-createFooter();
-
-// Consultas a la "base de datos"
-contactDatabase("/api/database?name=Tortilla");
+init();
