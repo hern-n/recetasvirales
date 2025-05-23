@@ -152,7 +152,7 @@ export function contactDatabase(parametrer) {
     fetch(parametrer)
     .then(res => res.json())
     .then(data => {
-        console.log(data);
+        return data;
         // Mostrar receta en la página
     })
     .catch(err => console.error(err));
