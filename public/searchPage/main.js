@@ -47,12 +47,14 @@ function renderRecetas(data) {
 
     document.body.appendChild(container);
 }
-fetch('/public/data.json')
-    .then(res => res.json())
-    .then(data => {
-        createTaskBar(data.taskBar);
 
-        renderRecetas(recetas);
+createTaskBar();
 
-        createFooter(data.footer);
-    });
+renderRecetas(recetas);
+
+createFooter();
+
+// Consultas a la "base de datos"
+contactDatabase("/api/database?id=1");
+contactDatabase("/api/database?name=Tortilla");
+contactDatabase("/api/database?category=platos_completos");

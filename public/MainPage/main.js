@@ -94,6 +94,10 @@ function createCategories() {
         overlay.className = "categoria-overlay";
         overlay.textContent = cat.nombre;
 
+        card.onclick = () => {
+                    window.location.href = `../searchPage/index.html`;
+                };
+
         card.appendChild(img);
         card.appendChild(overlay);
         lista.appendChild(card);
