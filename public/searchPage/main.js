@@ -56,4 +56,6 @@ async function init() {
     createFooter();
 }
 
-init();
+//init();
+
+console.log(contactDatabase("/api/database?category=platos_completos"))
