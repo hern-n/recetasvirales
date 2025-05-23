@@ -53,7 +53,7 @@ createTaskBar();
 const nombre = "Tortilla de patatas";
 const url = "/api/database?name=" + encodeURIComponent(nombre);
 
-await contactDatabase("url")
+await contactDatabase(url)
     .then(data => {
         renderRecetas(data);
     });
