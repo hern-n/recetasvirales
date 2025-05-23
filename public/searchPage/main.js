@@ -94,7 +94,7 @@ function mostrarNoRecetas() {
         fontFamily: '"Tsukimi Rounded", serif',
         textAlign: 'center',
         marginTop: '100px',
-        marginBottom: '80px',
+        marginBottom: '120px',
         fontSize: '1.2rem',
         padding: '20px',
     });
