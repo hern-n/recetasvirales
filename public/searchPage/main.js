@@ -48,15 +48,11 @@ function renderRecetas(data) {
     document.body.appendChild(container);
 }
 
-let infoSearch = new URLSearchParams(window.location.search);
 createTaskBar();
 
+const params = new URLSearchParams(window.location.search);
+
 let url;
-
-
-// Quitar el posible '?' del inicio
-const query = infoSearch.startsWith('?') ? infoSearch.substring(1) : infoSearch;
-const params = new URLSearchParams(query);
 
 if (params.has('id')) {
     const id = params.get('id');
@@ -68,15 +64,12 @@ if (params.has('id')) {
     const categoria = params.get('category');
     url = "/api/database?category=" + encodeURIComponent(categoria);
 } else {
-    // Si no hay parámetros conocidos, puedes usar un valor por defecto o vacío
     url = "/api/database";
 }
-
 
 await contactDatabase(url)
     .then(data => {
         if (!data || data.length === 0) {
-            // Mostrar mensaje de "No se han encontrado recetas"
             document.body.insertAdjacentHTML('beforeend', `
                 <div class="no-recetas" style="color: black; font-weight: bold; font-family: 'Tsukimi Rounded', serif; text-align: center; margin: 20px;">
                     No se han encontrado recetas.
