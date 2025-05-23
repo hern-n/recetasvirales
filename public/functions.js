@@ -163,3 +163,15 @@ export async function contactDatabase(parametrer) {
         throw err; // Para que lo maneje quien llame a la función
     }
 }
+
+
+export function convertData(rawData) {
+    return rawData.map(receta => {
+        return {
+            ...receta,
+            ingredientes: JSON.parse(receta.ingredientes),
+            pasos: JSON.parse(receta.pasos),
+            fotos: JSON.parse(receta.fotos)
+        };
+    });
+}
