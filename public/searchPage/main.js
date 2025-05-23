@@ -50,15 +50,9 @@ function renderRecetas(data) {
 
 createTaskBar();
 
-await contactDatabase("/api/database?category=platos_completos")
+await contactDatabase("/api/database?id=1")
     .then(data => {
         renderRecetas(data);
     });
 
 createFooter();
-
-
-contactDatabase("/api/database?category=platos_completos")
-    .then(data => {
-        console.log("Datos recibidos:", data);
-    });
