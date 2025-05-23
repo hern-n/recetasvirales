@@ -1,4 +1,4 @@
-import { contactDatabase, createTaskBar, createFooter } from "../functions.js";
+import { contactDatabase, createTaskBar, createFooter, convertData } from "../functions.js";
 
 const recetas = [
     {
@@ -50,7 +50,7 @@ function renderRecetas(data) {
 
 createTaskBar();
 
-renderRecetas(contactDatabase("/api/database?category=platos_completos"));
+renderRecetas(convertData(contactDatabase("/api/database?category=platos_completos")));
 
 createFooter();
 

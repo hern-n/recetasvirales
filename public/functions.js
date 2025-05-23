@@ -157,3 +157,14 @@ export function contactDatabase(parametrer) {
     })
     .catch(err => console.error(err));
 }
+
+export function convertData(rawData) {
+    return rawData.map(receta => {
+        return {
+            ...receta,
+            ingredientes: JSON.parse(receta.ingredientes),
+            pasos: JSON.parse(receta.pasos),
+            fotos: JSON.parse(receta.fotos)
+        };
+    });
+}
