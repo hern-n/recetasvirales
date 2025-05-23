@@ -50,11 +50,10 @@ function renderRecetas(data) {
 
 createTaskBar();
 
-renderRecetas(recetas);
+renderRecetas(contactDatabase("/api/database?category=platos_completos"));
 
 createFooter();
 
 // Consultas a la "base de datos"
 contactDatabase("/api/database?id=1");
 contactDatabase("/api/database?name=Tortilla");
-contactDatabase("/api/database?category=platos_completos");
