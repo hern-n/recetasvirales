@@ -53,27 +53,25 @@ createTaskBar();
 
 let url;
 
-if (infoSearch) {
-    // Quitar el posible '?' del inicio
-    const query = infoSearch.startsWith('?') ? infoSearch.substring(1) : infoSearch;
-    const params = new URLSearchParams(query);
 
-    if (params.has('id')) {
-        const id = params.get('id');
-        url = "/api/database?id=" + encodeURIComponent(id);
-    } else if (params.has('name')) {
-        const nombre = params.get('name');
-        url = "/api/database?name=" + encodeURIComponent(nombre);
-    } else if (params.has('category')) {
-        const categoria = params.get('category');
-        url = "/api/database?category=" + encodeURIComponent(categoria);
-    } else {
-        // Si no hay parámetros conocidos, puedes usar un valor por defecto o vacío
-        url = "/api/database";
-    }
+// Quitar el posible '?' del inicio
+const query = infoSearch.startsWith('?') ? infoSearch.substring(1) : infoSearch;
+const params = new URLSearchParams(query);
+
+if (params.has('id')) {
+    const id = params.get('id');
+    url = "/api/database?id=" + encodeURIComponent(id);
+} else if (params.has('name')) {
+    const nombre = params.get('name');
+    url = "/api/database?name=" + encodeURIComponent(nombre);
+} else if (params.has('category')) {
+    const categoria = params.get('category');
+    url = "/api/database?category=" + encodeURIComponent(categoria);
 } else {
-    url = "/api/database"; // fallback por si infoSearch está vacío o undefined
+    // Si no hay parámetros conocidos, puedes usar un valor por defecto o vacío
+    url = "/api/database";
 }
+
 
 await contactDatabase(url)
     .then(data => {
