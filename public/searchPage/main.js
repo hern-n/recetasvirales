@@ -50,7 +50,7 @@ function renderRecetas(data) {
 
 createTaskBar();
 
-contactDatabase("/api/database?category=platos_completos")
+await contactDatabase("/api/database?category=platos_completos")
     .then(data => {
         renderRecetas(data);
     });
