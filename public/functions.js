@@ -148,27 +148,18 @@ export function createFooter() {
 }
 
 
-export function contactDatabase(parametrer) {
-    return fetch(parametrer)
-        .then(res => res.json())
-        .then(data => {
-            return data; // Este return ahora forma parte de la promesa devuelta
-        })
-        .catch(err => {
-            console.error(err);
-            // Opcional: puedes volver a lanzar el error si quieres que lo manejen fuera
-            throw err;
-        });
-}
-
-
-export function convertData(rawData) {
-    return rawData.map(receta => {
-        return {
-            ...receta,
-            ingredientes: JSON.parse(receta.ingredientes),
-            pasos: JSON.parse(receta.pasos),
-            fotos: JSON.parse(receta.fotos)
-        };
-    });
+export async function contactDatabase(parametrer) {
+    try {
+        const res = await fetch(parametrer);
+        if (!res.ok) {
+            // Si status no es 200-299, lanza error con texto de la respuesta
+            const text = await res.text();
+            throw new Error(`Error ${res.status}: ${text}`);
+        }
+        const data = await res.json();
+        return data;
+    } catch (err) {
+        console.error("Error en contactDatabase:", err);
+        throw err; // Para que lo maneje quien llame a la función
+    }
 }
