@@ -6,21 +6,31 @@ export function createTaskBar() {
     const headerTop = document.createElement("div");
     headerTop.className = "header-top";
 
-    const logo = document.createElement("div");
+    const logo = document.createElement("button"); // Cambiado a botón
     logo.className = "logo";
+    logo.style.border = "none";
+    logo.style.background = "none";
+    logo.style.cursor = "pointer";
+    logo.onclick = () => {
+        window.location.href = "../MainPage/index.html"; // Redirección al hacer click
+    };
+
     const logoImg = document.createElement("img");
     logoImg.src = "/MainPage/resources/logo.png";
     logoImg.alt = "Logo";
+
     logo.appendChild(logoImg);
     headerTop.appendChild(logo);
 
     const searchForm = document.createElement("form");
     searchForm.className = "search-form";
     searchForm.onsubmit = e => e.preventDefault();
+
     const searchInput = document.createElement("input");
     searchInput.type = "text";
     searchInput.placeholder = "Buscar recetas, ingredientes...";
     searchInput.className = "search-input";
+
     searchForm.appendChild(searchInput);
     headerTop.appendChild(searchForm);
 
