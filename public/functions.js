@@ -2,34 +2,41 @@ export function createTaskBar() {
     const header = document.createElement("header");
     header.className = "header";
 
-    // --- PARTE SUPERIOR (logo, búsqueda, cuenta) ---
     const headerTop = document.createElement("div");
     headerTop.className = "header-top";
 
-    const logo = document.createElement("button"); // Cambiado a botón
+    const logo = document.createElement("button");
     logo.className = "logo";
     logo.style.border = "none";
     logo.style.background = "none";
     logo.style.cursor = "pointer";
     logo.onclick = () => {
-        window.location.href = "../MainPage/index.html"; // Redirección al hacer click
+        window.location.href = "../MainPage/index.html";
     };
 
     const logoImg = document.createElement("img");
     logoImg.src = "/MainPage/resources/logo.png";
     logoImg.alt = "Logo";
-
     logo.appendChild(logoImg);
     headerTop.appendChild(logo);
 
     const searchForm = document.createElement("form");
     searchForm.className = "search-form";
-    searchForm.onsubmit = e => e.preventDefault();
 
     const searchInput = document.createElement("input");
     searchInput.type = "text";
     searchInput.placeholder = "Buscar recetas, ingredientes...";
     searchInput.className = "search-input";
+
+    // Manejo del envío solo si hay texto
+    searchForm.onsubmit = (e) => {
+        e.preventDefault();
+        const searchValue = searchInput.value.trim();
+        if (searchValue.length > 0) {
+            const encoded = encodeURIComponent(searchValue);
+            window.location.href = `../searchPage/index.html?name=${encoded}`;
+        }
+    };
 
     searchForm.appendChild(searchInput);
     headerTop.appendChild(searchForm);
@@ -53,6 +60,7 @@ export function createTaskBar() {
 
     document.body.appendChild(header);
 }
+
 
 
 export function createFooter() {
