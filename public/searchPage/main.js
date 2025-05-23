@@ -48,15 +48,15 @@ function renderRecetas(data) {
     document.body.appendChild(container);
 }
 
-async function init() {
-    const rawData = await contactDatabase("/api/database?category=platos_completos");
-    const data = convertData(rawData);
-    createTaskBar();
-    renderRecetas(data);
-    createFooter();
-}
+createTaskBar();
 
-//init();
+contactDatabase("/api/database?category=platos_completos")
+    .then(data => {
+        renderRecetas(data);
+    });
+
+createFooter();
+
 
 contactDatabase("/api/database?category=platos_completos")
     .then(data => {
