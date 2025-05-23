@@ -58,4 +58,7 @@ async function init() {
 
 //init();
 
-console.log(contactDatabase("/api/database?category=platos_completos"))
+contactDatabase("/api/database?category=platos_completos")
+    .then(data => {
+        console.log("Datos recibidos:", data);
+    });

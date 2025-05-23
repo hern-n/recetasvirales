@@ -149,13 +149,18 @@ export function createFooter() {
 
 
 export function contactDatabase(parametrer) {
-    fetch(parametrer)
-    .then(res => res.json())
-    .then(data => {
-        return data;
-    })
-    .catch(err => console.error(err));
+    return fetch(parametrer)
+        .then(res => res.json())
+        .then(data => {
+            return data; // Este return ahora forma parte de la promesa devuelta
+        })
+        .catch(err => {
+            console.error(err);
+            // Opcional: puedes volver a lanzar el error si quieres que lo manejen fuera
+            throw err;
+        });
 }
+
 
 export function convertData(rawData) {
     return rawData.map(receta => {
