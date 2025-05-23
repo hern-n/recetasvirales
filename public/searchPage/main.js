@@ -48,7 +48,7 @@ function renderRecetas(data) {
     document.body.appendChild(container);
 }
 
-let infoSearch; // Aquí debe venir la URL o query string que buscas, ejemplo: "?id=1" o "?name=Tortilla" o "?category=Postres"
+let infoSearch = new URLSearchParams(window.location.search);
 createTaskBar();
 
 let url;
