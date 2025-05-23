@@ -48,20 +48,17 @@ function renderRecetas(data) {
     document.body.appendChild(container);
 }
 
-async function initApp() {
-    createTaskBar();
+createTaskBar();
 
-    try {
-        const dataCategory = await contactDatabase("/api/database?category=platos_completos");
-        renderRecetas(dataCategory);
+await contactDatabase("/api/database?id=1")
+    .then(data => {
+        renderRecetas(data);
+    });
 
-        const dataById = await contactDatabase("/api/database?id=1");
-        console.log("Datos de la receta con ID 1:", dataById);
-    } catch (error) {
-        console.error("Error al contactar con la base de datos:", error);
-    }
+createFooter();
 
-    createFooter();
-}
 
-initApp();
+await contactDatabase("/api/database?id=1")
+    .then(data => {
+        console.log(data);
+    });
