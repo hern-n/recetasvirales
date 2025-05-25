@@ -215,213 +215,116 @@ body {
 
 /*Fin de las partes comunes*/
 
-/* Contenedor principal */
 .contenedor {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Encabezado: galería + info */
-.encabezado-receta {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 30px;
-}
-
-/* Galería */
-.galeria {
-    flex: 1 1 40%;
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.encabezado-receta {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+}
+
+.galeria {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .imagen-principal {
     width: 100%;
-    border-radius: 8px;
+    height: 400px;
+    border-radius: 1rem;
     object-fit: cover;
-    height: 350px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .miniaturas {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
+    justify-content: center;
 }
 
 .miniatura {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
+    width: 80px;
+    height: 80px;
     cursor: pointer;
-    border-radius: 5px;
-    border: 2px solid transparent;
-    transition: border-color 0.3s ease;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    transition: transform 0.2s;
 }
 
 .miniatura:hover {
-    border-color: #0A2F6A; /* Azul Mario */
+    transform: scale(1.1);
 }
 
-/* Info de receta */
 .info-receta {
-    flex: 1 1 50%;
-    font-family: Arial, sans-serif;
-    color: #484848;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .titulo-receta {
-    margin-bottom: 10px;
-    font-size: 2.4rem;
-    color: #0A2F6A;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: #fc6a03;
 }
 
-.info-receta p {
+.info-receta p,
+.info-receta li {
     font-size: 1.1rem;
-    margin: 6px 0;
-}
-
-.info-receta h3 {
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-/* Lista ingredientes */
-.info-receta ul {
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-/* Botón compartir */
-.boton-compartir-img {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: transform 0.2s ease;
-}
-
-.boton-compartir-img:hover {
-    transform: scale(1.2);
-}
-
-/* Burbuja compartir */
-.burbuja-compartir {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-    padding: 20px 30px;
-    z-index: 1100;
-    width: 300px;
-    text-align: center;
-    font-family: Arial, sans-serif;
     color: #333;
 }
 
-.burbuja-compartir.oculto {
-    display: none;
+.info-receta ul {
+    padding-left: 1.2rem;
+    margin: 0;
 }
 
-/* Fondo oscuro */
-.fondo-oscuro {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.4);
-    z-index: 1050;
-}
-
-.fondo-oscuro.oculto {
-    display: none;
-}
-
-/* Título burbuja */
-.titulo-burbuja {
-    margin-bottom: 20px;
-    font-weight: bold;
-    font-size: 1.8rem;
-    color: #0A2F6A;
-}
-
-/* Enlaces compartir */
-.enlaces-compartir {
+.pasos {
+    margin-top: 2rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.enlace-compartir {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    color: #0A2F6A;
-    font-size: 1.1rem;
-    transition: color 0.3s ease;
-}
-
-.enlace-compartir:hover {
-    color: #fe8c83;
-}
-
-.logo-compartir {
-    width: 28px;
-    height: 28px;
-}
-
-/* Botón copiar */
-#copiar-enlace {
-    padding: 10px 20px;
-    background-color: #0A2F6A;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
-    font-weight: 700;
-    transition: background-color 0.3s ease;
-    width: 100%;
-}
-
-#copiar-enlace:hover {
-    background-color: #08406c;
-}
-
-/* Pasos */
-.pasos {
-    margin-top: 20px;
-    font-family: Arial, sans-serif;
 }
 
 .paso {
     display: flex;
-    margin-bottom: 15px;
-    gap: 15px;
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    align-items: flex-start;
 }
 
 .paso-numero {
-    background-color: #0A2F6A;
+    background: #fc6a03;
     color: white;
-    font-weight: 700;
-    font-size: 1.4rem;
-    width: 36px;
-    height: 36px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    user-select: none;
+    margin-right: 1.5rem;
 }
 
 .paso-contenido p {
     margin: 0;
     font-size: 1.1rem;
-    color: #484848;
+    color: #555;
 }
