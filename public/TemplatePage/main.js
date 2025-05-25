@@ -252,4 +252,4 @@ if (params.has('id')) {
     crearPaginaReceta(recetaDemo);
 }
 
-createFooter(contactDatabase);
+createFooter();
