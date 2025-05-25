@@ -60,6 +60,45 @@ function crearPaginaReceta(receta) {
     info.appendChild(ingredientesTitulo);
     info.appendChild(listaIngredientes);
 
+    // Botón de compartir
+    const botonCompartir = document.createElement("img");
+    botonCompartir.className = "boton-compartir-img";
+    botonCompartir.src = "../MainPage/resources/logo.png"; // Cambia la ruta si es necesario
+    botonCompartir.alt = "Compartir receta";
+
+
+    // Burbuja flotante
+    const burbuja = document.createElement("div");
+    burbuja.className = "burbuja-compartir oculto"; // Oculto por defecto
+
+    const enlacePagina = window.location.href;
+
+    burbuja.innerHTML = `
+    <a href="https://wa.me/?text=${encodeURIComponent(enlacePagina)}" target="_blank">📱 WhatsApp</a>
+    <a href="https://www.instagram.com/" target="_blank">📸 Instagram</a>
+    <button id="copiar-enlace">🔗 Copiar enlace</button>
+    <a href="mailto:?subject=Receta&body=${encodeURIComponent(enlacePagina)}">✉️ Correo</a>
+`;
+
+    // Mostrar/ocultar burbuja al hacer clic
+    botonCompartir.addEventListener("click", () => {
+        burbuja.classList.toggle("oculto");
+    });
+
+    // Función copiar enlace
+    burbuja.querySelector("#copiar-enlace").addEventListener("click", async () => {
+        try {
+            await navigator.clipboard.writeText(enlacePagina);
+            alert("¡Enlace copiado!");
+        } catch (err) {
+            alert("No se pudo copiar el enlace.");
+        }
+    });
+
+    info.appendChild(botonCompartir);
+    info.appendChild(burbuja);
+
+
     // Encabezado que contiene galería + info
     const encabezado = document.createElement("div");
     encabezado.className = "encabezado-receta";
