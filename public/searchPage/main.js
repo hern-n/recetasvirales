@@ -42,6 +42,8 @@ function renderRecetas(data) {
         card.appendChild(img);
         card.appendChild(infoDiv);
 
+        console.log(`Receta: ${receta.id}`);
+
         // Evento click para redirigir con el id
         card.onclick = () => {
             const idCodificado = encodeURIComponent(receta.id);
