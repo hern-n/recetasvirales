@@ -127,10 +127,13 @@ let url;
 if (params.has('id')) {
     const id = params.get('id');
     url = "/api/database?id=" + encodeURIComponent(id);
+    console.log(`Id: ${id}`);
 }
 
 await contactDatabase(url)
     .then(receta => {
+        console.log(`Receta: ${receta}`);
+
         if (!receta || !receta.titulo) {
             crearPaginaReceta(recetaDemo);
         } else {
