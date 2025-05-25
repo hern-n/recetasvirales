@@ -1,3 +1,5 @@
+import { createTaskBar, createFooter, contactDatabase } from "../functions";
+
 function crearPaginaReceta(receta) {
     const body = document.body;
     body.innerHTML = "";
@@ -118,4 +120,8 @@ const recetaDemo = {
     ]
 };
 
+createTaskBar();
+
 crearPaginaReceta(recetaDemo);
+
+createFooter();
