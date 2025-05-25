@@ -1,8 +1,6 @@
 import { createTaskBar, createFooter, contactDatabase } from "../functions.js";
 
 function crearPaginaReceta(receta) {
-    const body = document.body;
-    body.innerHTML = "";
 
     const contenedor = document.createElement("div");
     contenedor.className = "contenedor";
