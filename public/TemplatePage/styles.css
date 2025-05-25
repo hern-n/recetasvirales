@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Tsukimi+Rounded&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Tsukimi Rounded", serif;
+    background: #f9f9f9;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.encabezado-receta {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+}
+
+.galeria {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.imagen-principal {
+    width: 100%;
+    height: 400px;
+    border-radius: 1rem;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.miniaturas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.miniatura {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    transition: transform 0.2s;
+}
+
+.miniatura:hover {
+    transform: scale(1.1);
+}
+
+.info-receta {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.titulo-receta {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: #fc6a03;
+}
+
+.info-receta p,
+.info-receta li {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.info-receta ul {
+    padding-left: 1.2rem;
+    margin: 0;
+}
+
+.pasos {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.paso {
+    display: flex;
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    align-items: flex-start;
+}
+
+.paso-numero {
+    background: #fc6a03;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1.5rem;
+}
+
+.paso-contenido p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #555;
+}
