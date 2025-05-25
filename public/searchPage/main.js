@@ -1,29 +1,59 @@
 import { contactDatabase, createTaskBar, createFooter, convertData } from "../functions.js";
 
 function renderRecetas(data) {
-    const container = document.createElement('div'); // Cambio importante aquí
+    const container = document.createElement('div');
     container.className = "recetas-grid";
 
     data.forEach(receta => {
         const card = document.createElement('div');
         card.className = 'receta-card';
 
-        const imagen = JSON.parse(receta.fotos)[0] || 'placeholder.jpg';
+        // Obtener la imagen
+        const imagenSrc = JSON.parse(receta.fotos)[0] || 'placeholder.jpg';
+        const img = document.createElement('img');
+        img.src = imagenSrc;
+        img.alt = receta.titulo;
 
-        card.innerHTML = `
-            <img src="${imagen}" alt="${receta.titulo}">
-            <div class="receta-info">
-                <div class="receta-titulo">${receta.titulo}</div>
-                <div class="receta-tiempo">🕒 ${receta.tiempo_preparacion}</div>
-                <div class="receta-personas">👥 ${receta.personas} personas</div>
-            </div>
-        `;
+        // Crear el contenedor de info
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'receta-info';
+
+        // Título
+        const tituloDiv = document.createElement('div');
+        tituloDiv.className = 'receta-titulo';
+        tituloDiv.textContent = receta.titulo;
+
+        // Tiempo
+        const tiempoDiv = document.createElement('div');
+        tiempoDiv.className = 'receta-tiempo';
+        tiempoDiv.textContent = `🕒 ${receta.tiempo_preparacion}`;
+
+        // Personas
+        const personasDiv = document.createElement('div');
+        personasDiv.className = 'receta-personas';
+        personasDiv.textContent = `👥 ${receta.personas} personas`;
+
+        // Añadir elementos al infoDiv
+        infoDiv.appendChild(tituloDiv);
+        infoDiv.appendChild(tiempoDiv);
+        infoDiv.appendChild(personasDiv);
+
+        // Añadir imagen e infoDiv a la card
+        card.appendChild(img);
+        card.appendChild(infoDiv);
+
+        // Evento click para redirigir con el id
+        card.onclick = () => {
+            const idCodificado = encodeURIComponent(receta.id);
+            window.location.href = `../TemplatePage/index.html`;
+        };
 
         container.appendChild(card);
     });
 
     document.body.appendChild(container);
 }
+
 
 createTaskBar();
 
