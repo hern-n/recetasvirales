@@ -134,9 +134,25 @@ await contactDatabase(url)
     .then(receta => {
         console.log("Receta:", receta);
 
+        // Si es un array, tomamos el primer elemento
+        if (Array.isArray(receta)) {
+            receta = receta[0];
+        }
+
         if (!receta || !receta.titulo) {
             crearPaginaReceta(recetaDemo);
         } else {
+            // Si algún campo viene como string, lo parseamos
+            if (typeof receta.ingredientes === "string") {
+                receta.ingredientes = JSON.parse(receta.ingredientes);
+            }
+            if (typeof receta.pasos === "string") {
+                receta.pasos = JSON.parse(receta.pasos);
+            }
+            if (typeof receta.fotos === "string") {
+                receta.fotos = JSON.parse(receta.fotos);
+            }
+
             crearPaginaReceta(receta);
         }
     })
