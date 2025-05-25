@@ -42,12 +42,10 @@ function renderRecetas(data) {
         card.appendChild(img);
         card.appendChild(infoDiv);
 
-        console.log(`Receta: ${receta.id}`);
-
         // Evento click para redirigir con el id
         card.onclick = () => {
             const idCodificado = encodeURIComponent(receta.id);
-            window.location.href = `../TemplatePage/index.html`;
+            window.location.href = `../TemplatePage/index.html?id=${idCodificado}`;
         };
 
         container.appendChild(card);

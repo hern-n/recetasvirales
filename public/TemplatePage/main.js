@@ -122,6 +122,30 @@ const recetaDemo = {
 
 createTaskBar();
 
-crearPaginaReceta(recetaDemo);
+const params = new URLSearchParams(window.location.search);
+
+let url;
+
+if (params.has('id')) {
+    const id = params.get('id'); 
+    url = "/api/database?id=" + encodeURIComponent(id);
+}
+
+await contactDatabase(url)
+    .then(data => {
+        if (!data || data.length === 0) {
+            crearPaginaReceta(recetaDemo);
+        } else {
+            crearPaginaReceta(data);
+        }
+    })
+    .catch(err => {
+        if (err.message && err.message.includes('404')) {
+            // Error 404: No se encontraron recetas en esa categoría
+            mostrarNoRecetas();
+        } else {
+            console.error("Error al cargar recetas:", err);
+        }
+    });
 
 createFooter();
