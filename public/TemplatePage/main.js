@@ -132,7 +132,7 @@ if (params.has('id')) {
 
 await contactDatabase(url)
     .then(receta => {
-        console.log(`Receta: ${receta}`);
+        console.log("Receta:", receta);
 
         if (!receta || !receta.titulo) {
             crearPaginaReceta(recetaDemo);
