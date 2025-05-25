@@ -216,6 +216,7 @@ body {
 /*Fin de las partes comunes*/
 
 .contenedor {
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     gap: 2rem;
