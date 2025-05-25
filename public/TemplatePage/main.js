@@ -85,6 +85,13 @@ function crearPaginaReceta(receta) {
         burbuja.classList.toggle("oculto");
     });
 
+    document.addEventListener("click", (e) => {
+        if (!burbuja.contains(e.target) && e.target !== botonCompartir) {
+            burbuja.classList.add("oculto");
+        }
+    });
+
+
     // Función copiar enlace
     burbuja.querySelector("#copiar-enlace").addEventListener("click", async () => {
         try {
