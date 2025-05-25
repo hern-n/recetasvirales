@@ -1,3 +1,396 @@
+@import url("https://fonts.googleapis.com/css2?family=Tsukimi+Rounded&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Tsukimi Rounded", serif;
+    background: #f9f9f9;
+}
+
+/*Partes comunes*/
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    /* alto para que esté encima */
+    background-color: white;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #eee;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.logo {
+    position: relative;      /* referencia para la imagen absoluta */
+    width: auto;            /* tamaño fijo del contenedor */
+    height: 40px;            /* alto fijo igual que antes */
+    overflow: visible;       /* que se vea lo que sobresalga */
+    padding-left: 10px;
+}
+
+.logo img {
+    position: absolute;      /* sacamos la imagen del flujo */
+    top: 50%;                /* centrado vertical */
+    left: 50%;               /* centrado horizontal */
+    height: 50px;            /* más grande que el contenedor */
+    width: auto;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: translate(-50%, -50%) scale(1.2); /* crecer al hacer hover */
+}
+
+.search-form {
+    flex: 1;
+    max-width: 800px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    font-family: "Tsukimi Rounded", serif;
+}
+
+.user-area {
+    display: flex;
+    gap: 1rem;
+}
+
+.login-btn {
+    background-color: #ff6b2d;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: "Tsukimi Rounded", serif;
+}
+
+.cuenta-btn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: "Tsukimi Rounded", serif;
+    transition: 0.3s;
+}
+
+.cuenta-btn:hover {
+    color: #ff6b2d;
+}
+
+.footer {
+    background-color: #0e1523;
+    color: #ccc;
+    font-family: 'Poppins', sans-serif;
+    padding: 40px 30px;
+}
+
+.footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.footer-logo-section {
+    max-width: 250px;
+}
+
+.footer-logo {
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.footer-logo-section p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #ccc;
+}
+
+.footer-social {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social i {
+    font-size: 18px;
+    background: #1c2431;
+    padding: 10px;
+    border-radius: 50%;
+    color: #ccc;
+    transition: background 0.3s;
+}
+
+.footer-social i:hover {
+    background: #2c3e50;
+}
+
+.footer-section {
+    min-width: 150px;
+}
+
+.footer-section h3 {
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.footer-section a {
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.footer-section a:hover {
+    color: #fff;
+}
+
+.footer-divider {
+    border: none;
+    border-top: 1px solid #222c3c;
+    margin: 30px 0;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.footer-legal {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.footer-legal a {
+    color: #ccc;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.footer-legal a:hover {
+    color: #fff;
+}
+
+.legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-payments {
+    display: flex;
+    gap: 15px;
+    font-size: 24px;
+    color: #ccc;
+}
+
+/*Fin de las partes comunes*/
+
+.contenedor {
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.encabezado-receta {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+}
+
+.galeria {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.imagen-principal {
+    width: 100%;
+    height: 400px;
+    border-radius: 1rem;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.miniaturas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.miniatura {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    transition: transform 0.2s;
+}
+
+.miniatura:hover {
+    transform: scale(1.1);
+}
+
+.info-receta {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.titulo-receta {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: #fc6a03;
+}
+
+.info-receta p,
+.info-receta li {
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.info-receta ul {
+    padding-left: 1.2rem;
+    margin: 0;
+}
+
+.pasos {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.paso {
+    display: flex;
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    align-items: flex-start;
+}
+
+.paso-numero {
+    background: #fc6a03;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1.5rem;
+}
+
+.paso-contenido p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.boton-compartir {
+    background-color: #484848;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.boton-compartir:hover {
+    background-color: #616161;
+}
+
+.burbuja-compartir {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 5px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 100;
+}
+
+.burbuja-compartir a,
+.burbuja-compartir button {
+    text-decoration: none;
+    color: #484848;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+}
+
+.burbuja-compartir button:hover,
+.burbuja-compartir a:hover {
+    text-decoration: underline;
+}
+
+.oculto {
+    display: none;
+}
+
+.boton-compartir-img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.2s ease;
+}
+
+.boton-compartir-img:hover {
+    transform: scale(1.1);
+}
+
+
 /* Contenedor principal */
 .contenedor {
     max-width: 1100px;
