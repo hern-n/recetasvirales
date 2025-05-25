@@ -1,4 +1,4 @@
-import { contactDatabase, createTaskBar, createFooter, convertData } from "../functions.js";
+import { contactDatabase, createTaskBar, createFooter } from "../functions.js";
 
 function renderRecetas(data) {
     const container = document.createElement('div');
@@ -113,7 +113,5 @@ function mostrarNoRecetas() {
         document.body.appendChild(noRecetasDiv);
     }
 }
-
-
 
 createFooter();

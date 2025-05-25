@@ -3,7 +3,6 @@ import { createTaskBar, createFooter, contactDatabase } from "../functions.js";
 function crearPaginaReceta(receta) {
     const body = document.body;
 
-
     const contenedor = document.createElement("div");
     contenedor.className = "contenedor";
 
@@ -19,7 +18,7 @@ function crearPaginaReceta(receta) {
     const miniaturas = document.createElement("div");
     miniaturas.className = "miniaturas";
 
-    receta.fotos.forEach((foto, index) => {
+    receta.fotos.forEach((foto) => {
         const mini = document.createElement("img");
         mini.src = foto;
         mini.className = "miniatura";
@@ -96,7 +95,7 @@ function crearPaginaReceta(receta) {
     body.appendChild(contenedor);
 }
 
-// Datos de prueba
+// Receta de demostración si no se encuentra ninguna válida
 const recetaDemo = {
     titulo: "Tortilla de patatas",
     personas: 4,
@@ -123,29 +122,24 @@ const recetaDemo = {
 createTaskBar();
 
 const params = new URLSearchParams(window.location.search);
-
 let url;
 
 if (params.has('id')) {
-    const id = params.get('id'); 
+    const id = params.get('id');
     url = "/api/database?id=" + encodeURIComponent(id);
 }
 
 await contactDatabase(url)
-    .then(data => {
-        if (!data || data.length === 0) {
+    .then(receta => {
+        if (!receta || !receta.titulo) {
             crearPaginaReceta(recetaDemo);
         } else {
-            crearPaginaReceta(data);
+            crearPaginaReceta(receta);
         }
     })
     .catch(err => {
-        if (err.message && err.message.includes('404')) {
-            // Error 404: No se encontraron recetas en esa categoría
-            mostrarNoRecetas();
-        } else {
-            console.error("Error al cargar recetas:", err);
-        }
+        console.error("Error al cargar receta:", err);
+        crearPaginaReceta(recetaDemo); // Carga demo por si acaso
     });
 
 createFooter();
