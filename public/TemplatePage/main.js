@@ -63,37 +63,74 @@ function crearPaginaReceta(receta) {
     // Botón de compartir
     const botonCompartir = document.createElement("img");
     botonCompartir.className = "boton-compartir-img";
-    botonCompartir.src = "../MainPage/resources/logo.png"; // Cambia la ruta si es necesario
+    botonCompartir.src = "../MainPage/resources/logo.png"; // Cambia la ruta si quieres
     botonCompartir.alt = "Compartir receta";
 
-
-    // Burbuja flotante
+    // Burbuja flotante con título y logos
     const burbuja = document.createElement("div");
-    burbuja.className = "burbuja-compartir oculto"; // Oculto por defecto
+    burbuja.className = "burbuja-compartir oculto";
 
+    // Fondo oscuro para resaltar la burbuja
+    const fondoOscuro = document.createElement("div");
+    fondoOscuro.className = "fondo-oscuro oculto";
+
+    // Título de la burbuja
+    const tituloBurbuja = document.createElement("h2");
+    tituloBurbuja.textContent = "Compartir";
+    tituloBurbuja.className = "titulo-burbuja";
+
+    // Contenido con enlaces + logos
+    const enlacesCompartir = document.createElement("div");
+    enlacesCompartir.className = "enlaces-compartir";
+
+    // URL para compartir
     const enlacePagina = window.location.href;
 
-    burbuja.innerHTML = `
-    <a href="https://wa.me/?text=${encodeURIComponent(enlacePagina)}" target="_blank">📱 WhatsApp</a>
-    <a href="https://www.instagram.com/" target="_blank">📸 Instagram</a>
-    <button id="copiar-enlace">🔗 Copiar enlace</button>
-    <a href="mailto:?subject=Receta&body=${encodeURIComponent(enlacePagina)}">✉️ Correo</a>
-`;
-
-    // Mostrar/ocultar burbuja al hacer clic
-    botonCompartir.addEventListener("click", () => {
-        burbuja.classList.toggle("oculto");
-    });
-
-    document.addEventListener("click", (e) => {
-        if (!burbuja.contains(e.target) && e.target !== botonCompartir) {
-            burbuja.classList.add("oculto");
+    // Array con los métodos de compartir, texto y logo (cambia las URLs de las imágenes)
+    const opcionesCompartir = [
+        {
+            nombre: "WhatsApp",
+            url: `https://wa.me/?text=${encodeURIComponent(enlacePagina)}`,
+            logo: "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+        },
+        {
+            nombre: "Instagram",
+            url: "https://www.instagram.com/",
+            logo: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"
+        },
+        {
+            nombre: "Correo",
+            url: `mailto:?subject=Receta&body=${encodeURIComponent(enlacePagina)}`,
+            logo: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg"
         }
+    ];
+
+    opcionesCompartir.forEach(opcion => {
+        const enlace = document.createElement("a");
+        enlace.href = opcion.url;
+        enlace.target = "_blank";
+        enlace.className = "enlace-compartir";
+
+        const imgLogo = document.createElement("img");
+        imgLogo.src = opcion.logo;
+        imgLogo.alt = opcion.nombre;
+        imgLogo.className = "logo-compartir";
+
+        const texto = document.createElement("span");
+        texto.textContent = opcion.nombre;
+
+        enlace.appendChild(imgLogo);
+        enlace.appendChild(texto);
+
+        enlacesCompartir.appendChild(enlace);
     });
 
+    // Botón copiar enlace
+    const botonCopiar = document.createElement("button");
+    botonCopiar.id = "copiar-enlace";
+    botonCopiar.textContent = "Copiar enlace";
 
-    // Función copiar enlace
-    burbuja.querySelector("#copiar-enlace").addEventListener("click", async () => {
+    botonCopiar.addEventListener("click", async () => {
         try {
             await navigator.clipboard.writeText(enlacePagina);
             alert("¡Enlace copiado!");
@@ -102,9 +139,43 @@ function crearPaginaReceta(receta) {
         }
     });
 
-    info.appendChild(botonCompartir);
-    info.appendChild(burbuja);
+    burbuja.appendChild(tituloBurbuja);
+    burbuja.appendChild(enlacesCompartir);
+    burbuja.appendChild(botonCopiar);
 
+    // Mostrar/ocultar burbuja y fondo al hacer clic
+    botonCompartir.addEventListener("click", () => {
+        const estaOculto = burbuja.classList.contains("oculto");
+        if (estaOculto) {
+            burbuja.classList.remove("oculto");
+            fondoOscuro.classList.remove("oculto");
+            document.body.style.overflow = "hidden"; // Evitar scroll cuando burbuja está abierta
+        } else {
+            burbuja.classList.add("oculto");
+            fondoOscuro.classList.add("oculto");
+            document.body.style.overflow = ""; // Recuperar scroll
+        }
+    });
+
+    // Cerrar burbuja si clicas fuera de ella o del botón
+    fondoOscuro.addEventListener("click", () => {
+        burbuja.classList.add("oculto");
+        fondoOscuro.classList.add("oculto");
+        document.body.style.overflow = "";
+    });
+
+    // También cerrar si clicas fuera directamente sobre el documento (opcional)
+    document.addEventListener("click", (e) => {
+        if (!burbuja.contains(e.target) && e.target !== botonCompartir && !fondoOscuro.contains(e.target)) {
+            burbuja.classList.add("oculto");
+            fondoOscuro.classList.add("oculto");
+            document.body.style.overflow = "";
+        }
+    });
+
+    info.appendChild(botonCompartir);
+    body.appendChild(fondoOscuro);
+    info.appendChild(burbuja);
 
     // Encabezado que contiene galería + info
     const encabezado = document.createElement("div");
@@ -141,7 +212,7 @@ function crearPaginaReceta(receta) {
     body.appendChild(contenedor);
 }
 
-// Receta de demostración si no se encuentra ninguna válida
+// Receta demo si no hay válida
 const recetaDemo = {
     titulo: "Tortilla de patatas",
     personas: 4,
@@ -172,39 +243,13 @@ let url;
 
 if (params.has('id')) {
     const id = params.get('id');
-    url = "/api/database?id=" + encodeURIComponent(id);
-    console.log(`Id: ${id}`);
+    url = `../db/recetas/receta_${id}.json`;
+    fetch(url)
+        .then(resp => resp.json())
+        .then(data => crearPaginaReceta(data))
+        .catch(() => crearPaginaReceta(recetaDemo));
+} else {
+    crearPaginaReceta(recetaDemo);
 }
 
-await contactDatabase(url)
-    .then(receta => {
-        console.log("Receta:", receta);
-
-        // Si es un array, tomamos el primer elemento
-        if (Array.isArray(receta)) {
-            receta = receta[0];
-        }
-
-        if (!receta || !receta.titulo) {
-            crearPaginaReceta(recetaDemo);
-        } else {
-            // Si algún campo viene como string, lo parseamos
-            if (typeof receta.ingredientes === "string") {
-                receta.ingredientes = JSON.parse(receta.ingredientes);
-            }
-            if (typeof receta.pasos === "string") {
-                receta.pasos = JSON.parse(receta.pasos);
-            }
-            if (typeof receta.fotos === "string") {
-                receta.fotos = JSON.parse(receta.fotos);
-            }
-
-            crearPaginaReceta(receta);
-        }
-    })
-    .catch(err => {
-        console.error("Error al cargar receta:", err);
-        crearPaginaReceta(recetaDemo); // Carga demo por si acaso
-    });
-
-createFooter();
+createFooter(contactDatabase);
