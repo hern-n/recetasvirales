@@ -1,4 +1,4 @@
-import { createTaskBar, createFooter, contactDatabase } from "../functions";
+import { createTaskBar, createFooter, contactDatabase } from "../functions.js";
 
 function crearPaginaReceta(receta) {
     const body = document.body;
