@@ -1,4 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Tsukimi+Rounded&display=swap");
+@font-face {
+    font-family: 'Tsukimi Rounded';
+    src: url('../resources/fuente_refular.otf') format('opentype');
+}
 
 * {
     box-sizing: border-box;

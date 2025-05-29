@@ -27,7 +27,7 @@ function createHeroSection() {
     hero.className = "hero";
 
     const backgroundImg = document.createElement("img");
-    backgroundImg.src = "/MainPage/resources/background_image.jpg";
+    backgroundImg.src = "/resources/background_image.jpg";
     backgroundImg.alt = "Fondo de Hero";
     hero.appendChild(backgroundImg);
 
@@ -74,12 +74,12 @@ function createCategories() {
     lista.className = "categorias-lista";
 
     const categorias = [
-        { nombre: "Pasta", imagen: "/MainPage/resources/pastas.jpg" },
-        { nombre: "Postres", imagen: "/MainPage/resources/postres.jpg" },
-        { nombre: "Ensaladas", imagen: "/MainPage/resources/ensaladas.jpg" },
-        { nombre: "Carnes", imagen: "/MainPage/resources/carnes.jpg" },
-        { nombre: "Pescados", imagen: "/MainPage/resources/mariscos.jpg" },
-        { nombre: "Vegetariano", imagen: "/MainPage/resources/vegetariano.jpg" }
+        { nombre: "Pasta", imagen: "/resources/pastas.jpg" },
+        { nombre: "Postres", imagen: "/resources/postres.jpg" },
+        { nombre: "Ensaladas", imagen: "/resources/ensaladas.jpg" },
+        { nombre: "Carnes", imagen: "/resources/carnes.jpg" },
+        { nombre: "Pescados", imagen: "/resources/mariscos.jpg" },
+        { nombre: "Vegetariano", imagen: "/resources/vegetariano.jpg" }
     ];
 
     categorias.forEach(cat => {

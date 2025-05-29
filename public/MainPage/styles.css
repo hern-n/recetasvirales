@@ -1,9 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Tsukimi+Rounded&display=swap");
+@font-face {
+    font-family: 'Tsukimi Rounded';
+    src: url('../resources/fuente_refular.otf') format('opentype');
+}
 
 body {
     margin: 0;
     font-family: "Tsukimi Rounded", serif;
 }
+
 /*Partes comunes*/
 .header {
     position: fixed;
@@ -29,25 +33,34 @@ body {
 }
 
 .logo {
-    position: relative;      /* referencia para la imagen absoluta */
-    width: auto;            /* tamaño fijo del contenedor */
-    height: 40px;            /* alto fijo igual que antes */
-    overflow: visible;       /* que se vea lo que sobresalga */
+    position: relative;
+    /* referencia para la imagen absoluta */
+    width: auto;
+    /* tamaño fijo del contenedor */
+    height: 40px;
+    /* alto fijo igual que antes */
+    overflow: visible;
+    /* que se vea lo que sobresalga */
     padding-left: 10px;
 }
 
 .logo img {
-    position: absolute;      /* sacamos la imagen del flujo */
-    top: 50%;                /* centrado vertical */
-    left: 50%;               /* centrado horizontal */
-    height: 50px;            /* más grande que el contenedor */
+    position: absolute;
+    /* sacamos la imagen del flujo */
+    top: 50%;
+    /* centrado vertical */
+    left: 50%;
+    /* centrado horizontal */
+    height: 50px;
+    /* más grande que el contenedor */
     width: auto;
     transform: translate(-50%, -50%);
     transition: transform 0.3s ease;
 }
 
 .logo img:hover {
-    transform: translate(-50%, -50%) scale(1.2); /* crecer al hacer hover */
+    transform: translate(-50%, -50%) scale(1.2);
+    /* crecer al hacer hover */
 }
 
 .search-form {
