@@ -5,7 +5,7 @@
 
 body {
     margin: 0;
-    font-family: "Tsukimi Rounded", serif;
+    font-family: "Tsukimi Rounded";
 }
 
 
@@ -65,7 +65,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 25px;
     border: 1px solid #ccc;
-    font-family: "Tsukimi Rounded", serif;
+    font-family: "Tsukimi Rounded";
 }
 
 .user-area {
@@ -81,7 +81,7 @@ body {
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
-    font-family: "Tsukimi Rounded", serif;
+    font-family: "Tsukimi Rounded";
 }
 
 .cuenta-btn {
@@ -89,7 +89,7 @@ body {
     border: none;
     font-size: 1rem;
     cursor: pointer;
-    font-family: "Tsukimi Rounded", serif;
+    font-family: "Tsukimi Rounded";
     transition: 0.3s;
 }
 
@@ -100,7 +100,7 @@ body {
 .footer {
     background-color: #0e1523;
     color: #ccc;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', san;
     padding: 40px 30px;
 }
 
@@ -221,7 +221,7 @@ body {
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     padding: 1rem;
-    font-family: sans-serif;
+    font-family: san;
     max-width: 1400px;
 }
 
@@ -259,7 +259,7 @@ body {
     font-weight: bold;
     margin: 0;
     color: #333;
-    font-family: "Tsukimi Rounded", serif;
+    font-family: "Tsukimi Rounded";
 }
 
 .receta-tiempo,
@@ -267,5 +267,5 @@ body {
     font-size: 0.85rem;
     color: #666;
     margin: 0;
-    font-family: "Tsukimi Rounded", serif;
+    font-family: "Tsukimi Rounded";
 }
