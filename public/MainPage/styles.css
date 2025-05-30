@@ -33,34 +33,25 @@ body {
 }
 
 .logo {
-    position: relative;
-    /* referencia para la imagen absoluta */
-    width: auto;
-    /* tamaño fijo del contenedor */
-    height: 40px;
-    /* alto fijo igual que antes */
-    overflow: visible;
-    /* que se vea lo que sobresalga */
+    position: relative;      /* referencia para la imagen absoluta */
+    width: auto;            /* tamaño fijo del contenedor */
+    height: 40px;            /* alto fijo igual que antes */
+    overflow: visible;       /* que se vea lo que sobresalga */
     padding-left: 10px;
 }
 
 .logo img {
-    position: absolute;
-    /* sacamos la imagen del flujo */
-    top: 50%;
-    /* centrado vertical */
-    left: 50%;
-    /* centrado horizontal */
-    height: 50px;
-    /* más grande que el contenedor */
+    position: absolute;      /* sacamos la imagen del flujo */
+    top: 50%;                /* centrado vertical */
+    left: 50%;               /* centrado horizontal */
+    height: 50px;            /* más grande que el contenedor */
     width: auto;
     transform: translate(-50%, -50%);
     transition: transform 0.3s ease;
 }
 
 .logo img:hover {
-    transform: translate(-50%, -50%) scale(1.2);
-    /* crecer al hacer hover */
+    transform: translate(-50%, -50%) scale(1.2); /* crecer al hacer hover */
 }
 
 .search-form {
@@ -108,11 +99,12 @@ body {
 .footer {
     background-color: #0e1523;
     color: #ccc;
-    font-family: 'Poppins', san;
+    font-family: "Tsukimi Rounded";
     padding: 40px 30px;
 }
 
 .footer-top {
+    font-family: "Tsukimi Rounded";
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -130,18 +122,21 @@ body {
 }
 
 .footer-logo-section p {
+    font-family: "Tsukimi Rounded";
     font-size: 15px;
     line-height: 1.6;
     color: #ccc;
 }
 
 .footer-social {
+    font-family: "Tsukimi Rounded";
     margin-top: 20px;
     display: flex;
     gap: 15px;
 }
 
 .footer-social i {
+    font-family: "Tsukimi Rounded";
     font-size: 18px;
     background: #1c2431;
     padding: 10px;
@@ -159,12 +154,14 @@ body {
 }
 
 .footer-section h3 {
+    font-family: "Tsukimi Rounded";
     font-size: 18px;
     color: #fff;
     margin-bottom: 15px;
 }
 
 .footer-section a {
+    font-family: "Tsukimi Rounded";
     display: block;
     color: #ccc;
     text-decoration: none;
@@ -198,6 +195,7 @@ body {
 }
 
 .footer-legal a {
+    font-family: "Tsukimi Rounded";
     color: #ccc;
     text-decoration: none;
     margin-right: 10px;
@@ -208,6 +206,7 @@ body {
 }
 
 .legal-links {
+    font-family: "Tsukimi Rounded";
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -221,6 +220,7 @@ body {
 }
 
 /*Fin de las partes comunes*/
+
 .nav {
     margin-top: 90px;
     margin-bottom: 10px;
