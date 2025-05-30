@@ -61,8 +61,6 @@ export function createTaskBar() {
     document.body.appendChild(header);
 }
 
-
-
 export function createFooter() {
     const footer = document.createElement("footer");
     footer.className = "footer";
@@ -82,14 +80,6 @@ export function createFooter() {
     description.textContent = "Tu portal de recetas favorito para descubrir, compartir y disfrutar de la mejor gastronomía.";
     logoSection.appendChild(description);
 
-    const social = document.createElement("div");
-    social.className = "footer-social";
-    ["fa-facebook-f", "fa-instagram", "fa-x-twitter", "fa-youtube"].forEach(icon => {
-        const i = document.createElement("i");
-        i.className = `fab ${icon}`;
-        social.appendChild(i);
-    });
-    logoSection.appendChild(social);
     top.appendChild(logoSection);
 
     [
