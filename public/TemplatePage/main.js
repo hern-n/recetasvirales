@@ -30,13 +30,25 @@ function crearPaginaReceta(receta) {
 
     galeria.appendChild(miniaturas);
 
-    // Info de receta
+    // Info receta
     const info = document.createElement("div");
     info.className = "info-receta";
+
+    // 🔘 Botón de compartir
+    const botonCompartir = document.createElement("button");
+    botonCompartir.className = "boton-compartir";
+    botonCompartir.innerHTML = `<img src="../resources/compartir.png" alt="Compartir" />`;
+
+    // 🧱 Título + botón en línea
+    const tituloCompartir = document.createElement("div");
+    tituloCompartir.className = "titulo-compartir";
 
     const titulo = document.createElement("h1");
     titulo.className = "titulo-receta";
     titulo.textContent = receta.titulo;
+
+    tituloCompartir.appendChild(titulo);
+    tituloCompartir.appendChild(botonCompartir);
 
     const tiempo = document.createElement("p");
     tiempo.innerHTML = `🕒 Tiempo: <strong>${receta.tiempo_preparacion}</strong>`;
@@ -54,24 +66,12 @@ function crearPaginaReceta(receta) {
         listaIngredientes.appendChild(li);
     });
 
-    // Botón de compartir
-    const botonCompartir = document.createElement("button");
-    botonCompartir.className = "boton-compartir";
-    botonCompartir.innerHTML = `<img src="../resources/compartir.jpg" alt="Compartir" />`;
-
-    botonCompartir.addEventListener("click", () => {
-        overlay.style.display = "flex";
-    });
-
-    // Añadir todo al info
-    info.appendChild(titulo);
+    info.appendChild(tituloCompartir);
     info.appendChild(tiempo);
     info.appendChild(personas);
     info.appendChild(ingredientesTitulo);
     info.appendChild(listaIngredientes);
-    info.appendChild(botonCompartir);
 
-    // Encabezado
     const encabezado = document.createElement("div");
     encabezado.className = "encabezado-receta";
     encabezado.appendChild(galeria);
@@ -79,7 +79,6 @@ function crearPaginaReceta(receta) {
 
     contenedor.appendChild(encabezado);
 
-    // Pasos
     const pasos = document.createElement("div");
     pasos.className = "pasos";
 
@@ -105,7 +104,7 @@ function crearPaginaReceta(receta) {
     contenedor.appendChild(pasos);
     body.appendChild(contenedor);
 
-    // Overlay + Modal Compartir
+    // 🪟 Overlay y modal
     const overlay = document.createElement("div");
     overlay.className = "overlay-compartir";
     overlay.style.display = "none";
@@ -115,17 +114,17 @@ function crearPaginaReceta(receta) {
     modal.innerHTML = `
         <h2>Compartir</h2>
         <div class="opciones-compartir">
-            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(window.location.href)}" target="_blank">
-                <img src="../resources/whatsapp.png" alt="WhatsApp">
+            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(window.location.href)}" target="_blank" title="Compartir por WhatsApp">
+                <img src="../resources/icono-whatsapp.png" alt="WhatsApp" />
             </a>
-            <a href="mailto:?subject=¡Mira esta receta!&body=${encodeURIComponent(window.location.href)}">
-                <img src="../resources/correo.png" alt="Correo">
+            <a href="mailto:?subject=¡Mira esta receta!&body=${encodeURIComponent(window.location.href)}" title="Compartir por correo">
+                <img src="../resources/icono-email.png" alt="Correo" />
             </a>
-            <a href="https://www.instagram.com/" target="_blank">
-                <img src="../resources/instagram.png" alt="Instagram">
+            <a href="https://www.instagram.com/" target="_blank" title="Compartir en Instagram">
+                <img src="../resources/icono-instagram.png" alt="Instagram" />
             </a>
-            <button id="copiar-enlace">
-                <img src="../resources/enlace.png" alt="Copiar enlace">
+            <button id="copiar-enlace" title="Copiar enlace">
+                <img src="../resources/icono-enlace.png" alt="Copiar enlace" />
             </button>
         </div>
     `;
@@ -133,21 +132,25 @@ function crearPaginaReceta(receta) {
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
 
-    // Copiar enlace
+    // 📋 Copiar enlace
     modal.querySelector("#copiar-enlace").addEventListener("click", () => {
         navigator.clipboard.writeText(window.location.href).then(() => {
             alert("¡Enlace copiado!");
         });
     });
 
-    // Cerrar modal al hacer clic fuera
+    // ❌ Cerrar al pulsar fuera
     overlay.addEventListener("click", (e) => {
         if (e.target === overlay) {
             overlay.style.display = "none";
         }
     });
-}
 
+    // Abrir modal
+    botonCompartir.addEventListener("click", () => {
+        overlay.style.display = "flex";
+    });
+}
 
 
 // Receta de demostración si no se encuentra ninguna válida

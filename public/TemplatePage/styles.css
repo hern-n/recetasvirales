@@ -286,10 +286,30 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
+.titulo-compartir {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .titulo-receta {
     font-size: 2.2rem;
-    margin-bottom: 0.5rem;
+    margin: 0;
     color: #fc6a03;
+}
+
+.boton-compartir {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.boton-compartir img {
+    height: 32px;
+    width: auto;
+    display: block;
 }
 
 .info-receta p,
@@ -301,25 +321,6 @@ body {
 .info-receta ul {
     padding-left: 1.2rem;
     margin: 0;
-}
-
-.boton-compartir {
-    align-self: flex-start;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    transition: transform 0.2s;
-}
-
-.boton-compartir img {
-    width: 45px;
-    height: auto;
-    display: block;
-}
-
-.boton-compartir:hover {
-    transform: scale(1.1);
 }
 
 .pasos {
@@ -359,7 +360,6 @@ body {
     color: #555;
 }
 
-/* Overlay y modal compartir */
 .overlay-compartir {
     position: fixed;
     top: 0;
@@ -375,46 +375,39 @@ body {
 
 .modal-compartir {
     background: white;
-    padding: 1.5rem;
-    border-radius: 1rem;
-    width: 250px;
-    height: 250px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    width: 300px;
+    max-width: 90vw;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    gap: 1rem;
 }
 
 .modal-compartir h2 {
+    margin: 0;
     font-size: 1.4rem;
-    margin-bottom: 1rem;
     color: #fc6a03;
 }
 
 .opciones-compartir {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .opciones-compartir a,
 .opciones-compartir button {
     background: none;
     border: none;
-    padding: 0;
     cursor: pointer;
+    padding: 0;
 }
 
 .opciones-compartir img {
     width: 40px;
-    height: 40px;
-    transition: transform 0.2s;
-}
-
-.opciones-compartir img:hover {
-    transform: scale(1.2);
+    height: auto;
 }
