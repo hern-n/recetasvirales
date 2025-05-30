@@ -57,7 +57,7 @@ function crearPaginaReceta(receta) {
     // 🔘 Botón de compartir
     const botonCompartir = document.createElement("button");
     botonCompartir.className = "boton-compartir";
-    botonCompartir.innerHTML = `<img src="ruta-de-tu-icono.svg" alt="Compartir" />`; // Cambia esto por la ruta de tu icono
+    botonCompartir.innerHTML = `<img src="../resources/logo.png" alt="Compartir" />`; // Cambia esto por la ruta de tu icono
 
     // Evento para mostrar la ventana flotante
     botonCompartir.addEventListener("click", () => {
