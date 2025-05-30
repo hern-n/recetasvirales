@@ -54,13 +54,24 @@ function crearPaginaReceta(receta) {
         listaIngredientes.appendChild(li);
     });
 
+    // 🔘 Botón de compartir
+    const botonCompartir = document.createElement("button");
+    botonCompartir.className = "boton-compartir";
+    botonCompartir.innerHTML = `<img src="ruta-de-tu-icono.svg" alt="Compartir" />`; // Cambia esto por la ruta de tu icono
+
+    // Evento para mostrar la ventana flotante
+    botonCompartir.addEventListener("click", () => {
+        overlay.style.display = "flex";
+    });
+
     info.appendChild(titulo);
     info.appendChild(tiempo);
     info.appendChild(personas);
     info.appendChild(ingredientesTitulo);
     info.appendChild(listaIngredientes);
+    info.appendChild(botonCompartir);
 
-    // Encabezado que contiene galería + info
+    // Encabezado
     const encabezado = document.createElement("div");
     encabezado.className = "encabezado-receta";
     encabezado.appendChild(galeria);
@@ -93,7 +104,41 @@ function crearPaginaReceta(receta) {
 
     contenedor.appendChild(pasos);
     body.appendChild(contenedor);
+
+    // 🪟 Overlay + Modal de Compartir
+    const overlay = document.createElement("div");
+    overlay.className = "overlay-compartir";
+    overlay.style.display = "none"; // Oculto por defecto
+
+    const modal = document.createElement("div");
+    modal.className = "modal-compartir";
+    modal.innerHTML = `
+        <h2>Compartir</h2>
+        <div class="opciones-compartir">
+            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(window.location.href)}" target="_blank">WhatsApp</a>
+            <a href="mailto:?subject=¡Mira esta receta!&body=${encodeURIComponent(window.location.href)}">Correo</a>
+            <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+            <button id="copiar-enlace">Copiar enlace</button>
+        </div>
+        <button id="cerrar-modal">Cerrar</button>
+    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // 📋 Funcionalidad para copiar enlace
+    modal.querySelector("#copiar-enlace").addEventListener("click", () => {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            alert("¡Enlace copiado!");
+        });
+    });
+
+    // ❌ Cerrar modal
+    modal.querySelector("#cerrar-modal").addEventListener("click", () => {
+        overlay.style.display = "none";
+    });
 }
+
 
 // Receta de demostración si no se encuentra ninguna válida
 const recetaDemo = {
