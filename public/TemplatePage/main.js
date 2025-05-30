@@ -57,7 +57,7 @@ function crearPaginaReceta(receta) {
     // Botón de compartir
     const botonCompartir = document.createElement("button");
     botonCompartir.className = "boton-compartir";
-    botonCompartir.innerHTML = `<img src="../resources/logo.png" alt="Compartir" />`;
+    botonCompartir.innerHTML = `<img src="../resources/compartir.jpg" alt="Compartir" />`;
 
     botonCompartir.addEventListener("click", () => {
         overlay.style.display = "flex";
@@ -119,13 +119,13 @@ function crearPaginaReceta(receta) {
                 <img src="../resources/whatsapp.png" alt="WhatsApp">
             </a>
             <a href="mailto:?subject=¡Mira esta receta!&body=${encodeURIComponent(window.location.href)}">
-                <img src="../resources/646094.png" alt="Correo">
+                <img src="../resources/correo.png" alt="Correo">
             </a>
             <a href="https://www.instagram.com/" target="_blank">
-                <img src="../resources/87390.png" alt="Instagram">
+                <img src="../resources/instagram.png" alt="Instagram">
             </a>
             <button id="copiar-enlace">
-                <img src="../resources/3858629.png" alt="Copiar enlace">
+                <img src="../resources/enlace.png" alt="Copiar enlace">
             </button>
         </div>
     `;

@@ -313,8 +313,9 @@ body {
 }
 
 .boton-compartir img {
-    width: 32px;
-    height: 32px;
+    width: 45px;
+    height: auto;
+    display: block;
 }
 
 .boton-compartir:hover {
