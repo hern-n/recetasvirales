@@ -115,16 +115,16 @@ function crearPaginaReceta(receta) {
         <h2>Compartir</h2>
         <div class="opciones-compartir">
             <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(window.location.href)}" target="_blank" title="Compartir por WhatsApp">
-                <img src="../resources/icono-whatsapp.png" alt="WhatsApp" />
+                <img src="../resources/whatsapp.png" alt="WhatsApp" />
             </a>
             <a href="mailto:?subject=¡Mira esta receta!&body=${encodeURIComponent(window.location.href)}" title="Compartir por correo">
-                <img src="../resources/icono-email.png" alt="Correo" />
+                <img src="../resources/correo.png" alt="Correo" />
             </a>
             <a href="https://www.instagram.com/" target="_blank" title="Compartir en Instagram">
-                <img src="../resources/icono-instagram.png" alt="Instagram" />
+                <img src="../resources/instagram.png" alt="Instagram" />
             </a>
             <button id="copiar-enlace" title="Copiar enlace">
-                <img src="../resources/icono-enlace.png" alt="Copiar enlace" />
+                <img src="../resources/enlace.png" alt="Copiar enlace" />
             </button>
         </div>
     `;
