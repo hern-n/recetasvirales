@@ -411,3 +411,15 @@ body {
     width: 40px;
     height: auto;
 }
+
+/* Efecto hover para todos los botones de compartir */
+.boton-compartir img,
+.opciones-compartir img {
+    transition: transform 0.2s ease;
+}
+
+.boton-compartir:hover img,
+.opciones-compartir a:hover img,
+.opciones-compartir button:hover img {
+    transform: scale(1.1);
+}
