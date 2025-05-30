@@ -303,6 +303,24 @@ body {
     margin: 0;
 }
 
+.boton-compartir {
+    align-self: flex-start;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.2s;
+}
+
+.boton-compartir img {
+    width: 32px;
+    height: 32px;
+}
+
+.boton-compartir:hover {
+    transform: scale(1.1);
+}
+
 .pasos {
     margin-top: 2rem;
     width: 100%;
@@ -340,6 +358,7 @@ body {
     color: #555;
 }
 
+/* Overlay y modal compartir */
 .overlay-compartir {
     position: fixed;
     top: 0;
@@ -355,35 +374,46 @@ body {
 
 .modal-compartir {
     background: white;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    width: 250px;
+    height: 250px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    max-width: 300px;
 }
 
 .modal-compartir h2 {
-    margin-bottom: 15px;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #fc6a03;
+}
+
+.opciones-compartir {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
 }
 
 .opciones-compartir a,
 .opciones-compartir button {
-    display: block;
-    margin: 10px 0;
-    text-decoration: none;
-    padding: 10px;
+    background: none;
     border: none;
-    background-color: #eee;
-    border-radius: 5px;
+    padding: 0;
     cursor: pointer;
 }
 
-#cerrar-modal {
-    margin-top: 10px;
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+.opciones-compartir img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.2s;
 }
 
+.opciones-compartir img:hover {
+    transform: scale(1.2);
+}

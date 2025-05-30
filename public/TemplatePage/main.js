@@ -30,7 +30,7 @@ function crearPaginaReceta(receta) {
 
     galeria.appendChild(miniaturas);
 
-    // Datos de receta
+    // Info de receta
     const info = document.createElement("div");
     info.className = "info-receta";
 
@@ -54,16 +54,16 @@ function crearPaginaReceta(receta) {
         listaIngredientes.appendChild(li);
     });
 
-    // 🔘 Botón de compartir
+    // Botón de compartir
     const botonCompartir = document.createElement("button");
     botonCompartir.className = "boton-compartir";
-    botonCompartir.innerHTML = `<img src="../resources/logo.png" alt="Compartir" />`; // Cambia esto por la ruta de tu icono
+    botonCompartir.innerHTML = `<img src="../resources/logo.png" alt="Compartir" />`;
 
-    // Evento para mostrar la ventana flotante
     botonCompartir.addEventListener("click", () => {
         overlay.style.display = "flex";
     });
 
+    // Añadir todo al info
     info.appendChild(titulo);
     info.appendChild(tiempo);
     info.appendChild(personas);
@@ -105,39 +105,49 @@ function crearPaginaReceta(receta) {
     contenedor.appendChild(pasos);
     body.appendChild(contenedor);
 
-    // 🪟 Overlay + Modal de Compartir
+    // Overlay + Modal Compartir
     const overlay = document.createElement("div");
     overlay.className = "overlay-compartir";
-    overlay.style.display = "none"; // Oculto por defecto
+    overlay.style.display = "none";
 
     const modal = document.createElement("div");
     modal.className = "modal-compartir";
     modal.innerHTML = `
         <h2>Compartir</h2>
         <div class="opciones-compartir">
-            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(window.location.href)}" target="_blank">WhatsApp</a>
-            <a href="mailto:?subject=¡Mira esta receta!&body=${encodeURIComponent(window.location.href)}">Correo</a>
-            <a href="https://www.instagram.com/" target="_blank">Instagram</a>
-            <button id="copiar-enlace">Copiar enlace</button>
+            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(window.location.href)}" target="_blank">
+                <img src="../resources/whatsapp.png" alt="WhatsApp">
+            </a>
+            <a href="mailto:?subject=¡Mira esta receta!&body=${encodeURIComponent(window.location.href)}">
+                <img src="../resources/646094.png" alt="Correo">
+            </a>
+            <a href="https://www.instagram.com/" target="_blank">
+                <img src="../resources/87390.png" alt="Instagram">
+            </a>
+            <button id="copiar-enlace">
+                <img src="../resources/3858629.png" alt="Copiar enlace">
+            </button>
         </div>
-        <button id="cerrar-modal">Cerrar</button>
     `;
 
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
 
-    // 📋 Funcionalidad para copiar enlace
+    // Copiar enlace
     modal.querySelector("#copiar-enlace").addEventListener("click", () => {
         navigator.clipboard.writeText(window.location.href).then(() => {
             alert("¡Enlace copiado!");
         });
     });
 
-    // ❌ Cerrar modal
-    modal.querySelector("#cerrar-modal").addEventListener("click", () => {
-        overlay.style.display = "none";
+    // Cerrar modal al hacer clic fuera
+    overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) {
+            overlay.style.display = "none";
+        }
     });
 }
+
 
 
 // Receta de demostración si no se encuentra ninguna válida
