@@ -27,7 +27,7 @@ function createHeroSection() {
     hero.className = "hero";
 
     const backgroundImg = document.createElement("img");
-    backgroundImg.src = "/resources/background_image.jpg";
+    backgroundImg.src = "../resources/categories/background_image.jpg";
     backgroundImg.alt = "Fondo de Hero";
     hero.appendChild(backgroundImg);
 
