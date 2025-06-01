@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Tsukimi Rounded';
-    src: url('../resources/OpenSans-Regular.ttf') format('opentype');
+    src: url('../resources/fonts/OpenSans-Regular.ttf') format('opentype');
 }
 
 body {

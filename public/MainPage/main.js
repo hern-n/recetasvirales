@@ -74,12 +74,12 @@ function createCategories() {
     lista.className = "categorias-lista";
 
     const categorias = [
-        { nombre: "Pasta", imagen: "/resources/pastas.jpg" },
-        { nombre: "Postres", imagen: "/resources/postres.jpg" },
-        { nombre: "Ensaladas", imagen: "/resources/ensaladas.jpg" },
+        { nombre: "Entrantes", imagen: "/resources/pastas.jpg" },
+        { nombre: "Platos fuertes", imagen: "/resources/postres.jpg" },
+        { nombre: "Vegetariano", imagen: "/resources/ensaladas.jpg" },
         { nombre: "Carnes", imagen: "/resources/carnes.jpg" },
         { nombre: "Pescados", imagen: "/resources/mariscos.jpg" },
-        { nombre: "Vegetariano", imagen: "/resources/vegetariano.jpg" }
+        { nombre: "Dulces", imagen: "/resources/vegetariano.jpg" }
     ];
 
     categorias.forEach(cat => {

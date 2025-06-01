@@ -15,7 +15,7 @@ export function createTaskBar() {
     };
 
     const logoImg = document.createElement("img");
-    logoImg.src = "/resources/logo.png";
+    logoImg.src = "./resources/logos/logo.png";
     logoImg.alt = "Logo";
     logo.appendChild(logoImg);
     headerTop.appendChild(logo);
