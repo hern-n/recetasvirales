@@ -65,15 +65,15 @@ let url;
 if (params.has('id')) {
     const id = params.get('id');
     url = "/api/database?id=" + encodeURIComponent(id);
-    console.log(params);
+    console.log(id);
 } else if (params.has('name')) {
     const nombre = params.get('name');
     url = "/api/database?name=" + encodeURIComponent(nombre);
-    console.log(params);
+    console.log(nombre);
 } else if (params.has('category')) {
     const categoria = params.get('category');
     url = "/api/database?category=" + encodeURIComponent(categoria);
-    console.log(params);
+    console.log(categoria);
 } else {
     url = "/api/database";
     console.log(params);
