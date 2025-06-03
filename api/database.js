@@ -1,7 +1,17 @@
 import { Database } from '@sqlitecloud/drivers';
 
 const dbUrl = process.env.SQLITECLOUD_URL;
-const db = new Database("sqlitecloud://cgaa8pjahk.g5.sqlite.cloud:8860/recetas.sqlite?apikey=APxGiL3Qa5ljtr86NfYCJg8Ev08bvBcg77nEmCICvDg");
+
+// Validación simple de URL para evitar crear base local por defecto
+if (!dbUrl) {
+    throw new Error('❌ La variable de entorno SQLITECLOUD_URL no está definida');
+}
+
+if (!dbUrl.startsWith('wss://')) {
+    throw new Error('❌ La URL de conexión debe comenzar con "wss://" para usar @sqlitecloud/drivers');
+}
+
+const db = new Database(dbUrl);
 
 export default async function handler(req, res) {
     if (req.method !== 'GET') {
@@ -27,7 +37,8 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Falta parámetro id, name o category' });
         }
 
-        const result = await db.execute(query, params);
+        // En @sqlitecloud/drivers el método para ejecutar es .sql()
+        const result = await db.sql(query, params);
 
         if (!result || result.length === 0) {
             return res.status(404).json({ error: 'No se encontraron resultados' });
