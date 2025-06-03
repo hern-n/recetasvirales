@@ -8,10 +8,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@sqlitecloud/drivers": "^1.0.438",
+    "@sqlitecloud/drivers": "^1.0.507",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "googleapis": "^149.0.0",
+    "mime-types": "^3.0.1",
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.2"
   }
