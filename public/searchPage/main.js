@@ -72,7 +72,7 @@ if (params.has('id')) {
     console.log(nombre);
 } else if (params.has('category')) {
     const categoria = params.get('category');
-    url = `/api/database?category=${encodeURIComponent(categoria)}`;
+    url = `https://cgaa8pjahk.g5.sqlite.cloud:443/v2/functions/obtenerRecetaCategoria?category=${encodeURIComponent(categoria)}`;
     console.log(categoria);
 } else {
     url = "/api/database";
