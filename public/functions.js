@@ -156,19 +156,18 @@ export function createFooter() {
 }
 
 
-export async function contactDatabase(parametrer) {
+export async function contactDatabase(parameter) {
     try {
-        const res = await fetch(parametrer);
+        const res = await fetch(parameter);
         if (!res.ok) {
-            // Si status no es 200-299, lanza error con texto de la respuesta
             const text = await res.text();
             throw new Error(`Error ${res.status}: ${text}`);
         }
-        const data = await res.json();
-        return data;
+        const json = await res.json();
+        return json.data; // aquí devuelves solo el array de recetas
     } catch (err) {
         console.error("Error en contactDatabase:", err);
-        throw err; // Para que lo maneje quien llame a la función
+        throw err;
     }
 }
 
