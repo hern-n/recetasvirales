@@ -58,20 +58,25 @@ function renderRecetas(data) {
 createTaskBar();
 
 const params = new URLSearchParams(window.location.search);
+console.log(params);
 
 let url;
 
 if (params.has('id')) {
     const id = params.get('id');
     url = "/api/database?id=" + encodeURIComponent(id);
+    console.log(params);
 } else if (params.has('name')) {
     const nombre = params.get('name');
     url = "/api/database?name=" + encodeURIComponent(nombre);
+    console.log(params);
 } else if (params.has('category')) {
     const categoria = params.get('category');
     url = "/api/database?category=" + encodeURIComponent(categoria);
+    console.log(params);
 } else {
     url = "/api/database";
+    console.log(params);
 }
 
 await contactDatabase(url)
