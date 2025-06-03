@@ -82,14 +82,17 @@ if (params.has('id')) {
 await contactDatabase(url)
     .then(data => {
         if (!data || data.length === 0) {
+            console.log(data);
             mostrarNoRecetas();
         } else {
+            console.log(data);
             renderRecetas(data);
         }
     })
     .catch(err => {
         if (err.message && err.message.includes('404')) {
             // Error 404: No se encontraron recetas en esa categoría
+            console.log(data);
             mostrarNoRecetas();
         } else {
             console.error("Error al cargar recetas:", err);
