@@ -183,7 +183,7 @@ export function convertData(rawData) {
     });
 }
 
-import { Database } from '@sqlitecloud/drivers';
+import { Database } from '/@sqlitecloud/drivers';
 
 const dbUrl = "sqlitecloud://cgaa8pjahk.g5.sqlite.cloud:8860/recetas.sqlite?apikey=APxGiL3Qa5ljtr86NfYCJg8Ev08bvBcg77nEmCICvDg";
 const db = new Database(dbUrl);
