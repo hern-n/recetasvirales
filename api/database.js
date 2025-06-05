@@ -1,6 +1,7 @@
 import { Database } from '@sqlitecloud/drivers';
 
-const dbUrl = process.env.SQLITECLOUD_URL;
+//const dbUrl = process.env.SQLITECLOUD_URL;
+dbUrl="sqlitecloud://cgaa8pjahk.g5.sqlite.cloud:8860/recetas.sqlite?apikey=APxGiL3Qa5ljtr86NfYCJg8Ev08bvBcg77nEmCICvDg"
 const db = new Database(dbUrl);
 
 export default async function handler(req, res) {
