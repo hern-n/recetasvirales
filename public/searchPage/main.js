@@ -1,5 +1,4 @@
-import { getInfo } from "../../api/database.js";
-import { contactDatabase, createTaskBar, createFooter } from "../functions.js";
+import { contactDatabase, createTaskBar, createFooter, getInfo } from "../functions.js";
 
 function renderRecetas(data) {
     const container = document.createElement('div');
