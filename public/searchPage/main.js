@@ -58,31 +58,24 @@ function renderRecetas(data) {
 createTaskBar();
 
 const params = new URLSearchParams(window.location.search);
-console.log(params);
-
 let url;
 
 if (params.has('id')) {
     const id = params.get('id');
     url = `/api/database?id=${encodeURIComponent(id)}`;
-    console.log(id);
 } else if (params.has('name')) {
     const nombre = params.get('name');
-    url = `/api/database.js?name=${encodeURIComponent(nombre)}`;
-    console.log(nombre);
+    url = `/api/database?name=${encodeURIComponent(nombre)}`; // Aquí quito el ".js"
 } else if (params.has('category')) {
     const categoria = params.get('category');
     url = `/api/database?category=${encodeURIComponent(categoria)}`;
-    console.log(categoria);
 } else {
     url = "/api/database";
-    console.log(params);
 }
 
 await contactDatabase(url)
     .then(data => {
         if (!data || data.length === 0) {
-            console.log(data);
             mostrarNoRecetas();
         } else {
             renderRecetas(data);
@@ -90,12 +83,12 @@ await contactDatabase(url)
     })
     .catch(err => {
         if (err.message && err.message.includes('404')) {
-            // Error 404: No se encontraron recetas en esa categoría
             mostrarNoRecetas();
         } else {
             console.error("Error al cargar recetas:", err);
         }
     });
+
 
 function mostrarNoRecetas() {
     const noRecetasDiv = document.createElement('div');
