@@ -1,14 +1,10 @@
 import { Database } from '@sqlitecloud/drivers';
 
 // Aquí la URL de tu base de datos, puede ser variable de entorno o fija
-
+const dbUrl = "sqlitecloud://cgaa8pjahk.g5.sqlite.cloud:8860/recetas.sqlite?apikey=APxGiL3Qa5ljtr86NfYCJg8Ev08bvBcg77nEmCICvDg";
+const db = new Database(dbUrl);
 
 export default async function handler(req, res) {
-
-    const dbUrl = "sqlitecloud://cgaa8pjahk.g5.sqlite.cloud:8860/recetas.sqlite?apikey=APxGiL3Qa5ljtr86NfYCJg8Ev08bvBcg77nEmCICvDg";
-    const db = new Database(dbUrl);
-
-
     console.log('Método:', req.method);
     console.log('Query params:', req.query);
 
@@ -20,24 +16,25 @@ export default async function handler(req, res) {
 
     try {
         let query = '';
-        let params = [];
 
         if (id) {
-            query = 'SELECT * FROM recetas WHERE id = ?;';
-            params = [id];
+            // Para id, es mejor asegurarse que es un número para evitar inyección
+            if (isNaN(id)) {
+                return res.status(400).json({ error: 'ID no válido' });
+            }
+            query = `SELECT * FROM recetas WHERE id = ${id};`;
         } else if (name) {
-            query = 'SELECT * FROM recetas WHERE titulo LIKE ?;';
-            params = [`%${name}%`];
+            query = `SELECT * FROM recetas WHERE titulo LIKE '%${name}%';`;
         } else if (category) {
-            query = 'SELECT * FROM recetas WHERE categoria LIKE ?;';
-            params = [`%${category}%`];
+            query = `SELECT * FROM recetas WHERE categoria LIKE '%${category}%';`;
         } else {
             return res.status(400).json({ error: 'Falta parámetro id, name o category' });
         }
 
-        console.log('Ejecutando consulta:', query, params);
+        console.log('Ejecutando consulta:', query);
 
-        const result = await db.sql(query, params);
+        // Ejecutamos sin params porque el valor ya está en la query
+        const result = await db.sql(query);
 
         console.log('Resultado de la consulta:', result);
 
