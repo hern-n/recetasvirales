@@ -1,10 +1,14 @@
 import { Database } from '@sqlitecloud/drivers';
 
 // Aquí la URL de tu base de datos, puede ser variable de entorno o fija
-const dbUrl = "sqlitecloud://cgaa8pjahk.g5.sqlite.cloud:8860/recetas.sqlite?apikey=APxGiL3Qa5ljtr86NfYCJg8Ev08bvBcg77nEmCICvDg";
-const db = new Database(dbUrl);
+
 
 export default async function handler(req, res) {
+
+    const dbUrl = "sqlitecloud://cgaa8pjahk.g5.sqlite.cloud:8860/recetas.sqlite?apikey=APxGiL3Qa5ljtr86NfYCJg8Ev08bvBcg77nEmCICvDg";
+    const db = new Database(dbUrl);
+
+
     console.log('Método:', req.method);
     console.log('Query params:', req.query);
 

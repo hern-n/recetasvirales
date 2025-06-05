@@ -1,0 +1,34 @@
+-- Crear la tabla desde cero
+CREATE TABLE recetas (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    titulo TEXT NOT NULL,
+    tiempo_preparacion TEXT,
+    personas INTEGER,
+    ingredientes TEXT,
+    pasos TEXT,
+    categoria TEXT,
+    fotos TEXT
+);
+
+-- Insertar receta de prueba
+INSERT INTO recetas (
+    titulo, tiempo_preparacion, personas, ingredientes, pasos, categoria, fotos
+) VALUES (
+    'Tortilla de patatas',
+    '30 minutos',
+    4,
+    '[
+        "4 patatas medianas",
+        "6 huevos",
+        "Sal al gusto",
+        "Aceite de oliva"
+    ]',
+    '[
+        "Pelar y cortar las patatas en rodajas finas.",
+        "Freírlas en abundante aceite hasta que estén tiernas.",
+        "Batir los huevos y mezclarlos con las patatas.",
+        "Cocinar la mezcla en una sartén hasta que cuaje por ambos lados."
+    ]',
+    'platos_completos',
+    '["/images/tortilla.jpg"]'
+);
