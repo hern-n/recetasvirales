@@ -1,50 +1,44 @@
 import { Database } from '@sqlitecloud/drivers';
 
-// Aquí la URL de tu base de datos, puede ser variable de entorno o fija
 const dbUrl = "sqlitecloud://cgaa8pjahk.g5.sqlite.cloud:8860/recetas.sqlite?apikey=APxGiL3Qa5ljtr86NfYCJg8Ev08bvBcg77nEmCICvDg";
 const db = new Database(dbUrl);
 
-export default async function handler(req, res) {
-    console.log('Método:', req.method);
-    console.log('Query params:', req.query);
-
-    if (req.method !== 'GET') {
-        return res.status(405).json({ error: 'Método no permitido' });
-    }
-
-    const { id, name, category } = req.query;
-
+export async function getInfo(tipo, valor) {
     try {
         let query = '';
 
-        if (id) {
-            // Para id, es mejor asegurarse que es un número para evitar inyección
-            if (isNaN(id)) {
-                return res.status(400).json({ error: 'ID no válido' });
-            }
-            query = `SELECT * FROM recetas WHERE id = ${id};`;
-        } else if (name) {
-            query = `SELECT * FROM recetas WHERE titulo LIKE '%${name}%';`;
-        } else if (category) {
-            query = `SELECT * FROM recetas WHERE categoria LIKE '%${category}%';`;
+        if (tipo === 'id') {
+            query = `SELECT * FROM recetas WHERE id = ${valor};`;
+        } else if (tipo === 'name') {
+            query = `SELECT * FROM recetas WHERE titulo LIKE '%${valor}%';`;
+        } else if (tipo === 'category') {
+            query = `SELECT * FROM recetas WHERE categoria LIKE '%${valor}%';`;
         } else {
-            return res.status(400).json({ error: 'Falta parámetro id, name o category' });
+            throw new Error('Tipo de búsqueda no válido. Usa "id", "name" o "category".');
         }
 
         console.log('Ejecutando consulta:', query);
 
-        // Ejecutamos sin params porque el valor ya está en la query
+        // Aquí no pasamos params porque ya está todo en el string
         const result = await db.sql(query);
 
-        console.log('Resultado de la consulta:', result);
-
         if (!result || result.length === 0) {
-            return res.status(404).json({ error: 'No se encontraron resultados' });
+            throw new Error('No se encontraron resultados');
         }
 
-        return res.status(200).json(result);
+        return result;
     } catch (error) {
-        console.error('Error en API /api/database:', error);
-        return res.status(500).json({ error: 'Error interno del servidor' });
+        console.error('Error en getInfo():', error);
+        throw error;
     }
 }
+
+// Ejemplo rápido para probar:
+//(async () => {
+    try {
+        const res = await getInfo('name', 'tortilla');
+        console.log('Resultado:', res);
+    } catch (error) {
+        console.error('Error:', error.message);
+    }
+//})();

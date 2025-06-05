@@ -1,3 +1,4 @@
+import { getInfo } from "../../api/database.js";
 import { contactDatabase, createTaskBar, createFooter } from "../functions.js";
 
 function renderRecetas(data) {
@@ -73,7 +74,7 @@ if (params.has('id')) {
     url = "/api/database";
 }
 
-await contactDatabase(url)
+await getInfo("category", `${encodeURIComponent(categoria)}`)
     .then(data => {
         if (!data || data.length === 0) {
             mostrarNoRecetas();
