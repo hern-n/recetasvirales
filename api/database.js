@@ -1,10 +1,13 @@
 import { Database } from '@sqlitecloud/drivers';
 
-//const dbUrl = process.env.SQLITECLOUD_URL;
-dbUrl="sqlitecloud://cgaa8pjahk.g5.sqlite.cloud:8860/recetas.sqlite?apikey=APxGiL3Qa5ljtr86NfYCJg8Ev08bvBcg77nEmCICvDg"
+// Aquí la URL de tu base de datos, puede ser variable de entorno o fija
+const dbUrl = "sqlitecloud://cgaa8pjahk.g5.sqlite.cloud:8860/recetas.sqlite?apikey=APxGiL3Qa5ljtr86NfYCJg8Ev08bvBcg77nEmCICvDg";
 const db = new Database(dbUrl);
 
 export default async function handler(req, res) {
+    console.log('Método:', req.method);
+    console.log('Query params:', req.query);
+
     if (req.method !== 'GET') {
         return res.status(405).json({ error: 'Método no permitido' });
     }
@@ -28,7 +31,11 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Falta parámetro id, name o category' });
         }
 
-        const result = await db.sql(query, params); // <-- ¡Aquí estaba el fallo!
+        console.log('Ejecutando consulta:', query, params);
+
+        const result = await db.sql(query, params);
+
+        console.log('Resultado de la consulta:', result);
 
         if (!result || result.length === 0) {
             return res.status(404).json({ error: 'No se encontraron resultados' });
