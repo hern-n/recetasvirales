@@ -27,7 +27,7 @@ export default async function handler(req, res) {
             return res.status(400).json({ error: 'Falta parámetro id, name o category' });
         }
 
-        const result = await connection.sql(query, params);
+        const result = await db.sql(query, params); // <-- ¡Aquí estaba el fallo!
 
         if (!result || result.length === 0) {
             return res.status(404).json({ error: 'No se encontraron resultados' });
