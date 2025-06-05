@@ -68,11 +68,11 @@ if (params.has('id')) {
     console.log(id);
 } else if (params.has('name')) {
     const nombre = params.get('name');
-    url = `/api/database?name=${encodeURIComponent(nombre)}`;
+    url = `/api/database.js?name=${encodeURIComponent(nombre)}`;
     console.log(nombre);
 } else if (params.has('category')) {
     const categoria = params.get('category');
-    url = `https://cgaa8pjahk.g5.sqlite.cloud:443/v2/functions/obtenerRecetaCategoria?category=${encodeURIComponent(categoria)}`;
+    url = `/api/database?category=${encodeURIComponent(categoria)}`;
     console.log(categoria);
 } else {
     url = "/api/database";
