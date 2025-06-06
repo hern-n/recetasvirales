@@ -6,6 +6,12 @@ export default async function handler(req, res) {
     }
 
     const { id, name, category } = req.query;
+    console.log('req.query:', req.query);
+    
+    console.log('id:', id);
+    console.log('name:', name);
+    console.log('category:', category);
+
 
     try {
         let query = supabase.from('recetas').select('*');
