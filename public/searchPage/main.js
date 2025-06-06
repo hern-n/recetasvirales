@@ -1,4 +1,4 @@
-import { contactDatabase, createTaskBar, createFooter, getInfo } from "../functions.js";
+import { contactDatabase, createTaskBar, createFooter } from "../functions.js";
 
 function renderRecetas(data) {
     const container = document.createElement('div');
@@ -65,7 +65,7 @@ if (params.has('id')) {
     url = `/api/database?id=${encodeURIComponent(id)}`;
 } else if (params.has('name')) {
     const nombre = params.get('name');
-    url = `/api/database?name=${encodeURIComponent(nombre)}`; // Aquí quito el ".js"
+    url = `/api/database?name=${encodeURIComponent(nombre)}`;
 } else if (params.has('category')) {
     const categoria = params.get('category');
     url = `/api/database?category=${encodeURIComponent(categoria)}`;
@@ -73,7 +73,7 @@ if (params.has('id')) {
     url = "/api/database";
 }
 
-await getInfo("category", `${encodeURIComponent(categoria)}`)
+await contactDatabase(url)
     .then(data => {
         if (!data || data.length === 0) {
             mostrarNoRecetas();
