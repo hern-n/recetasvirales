@@ -1,8 +1,11 @@
-// supabase.js
-import { createClient } from '@supabase/supabase-js';
+import postgres from 'postgres';
 
-// Estas variables las defines en tu .env.local o .env
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY; // o la anon key si solo lectura
+const connectionString = process.env.DATABASE_URL;
 
-export const supabase = createClient(supabaseUrl, supabaseKey);
+if (!connectionString) {
+    throw new Error('Falta la variable de entorno DATABASE_URL');
+}
+
+const supabase = postgres(connectionString);
+
+export default supabase;
