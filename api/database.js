@@ -1,4 +1,4 @@
-import { sql } from './supabase.js';
+import sql from './supabase.js'; // o './supabase.js' si lo llamas así
 
 export default async function handler(req, res) {
     if (req.method !== 'GET') {
@@ -6,38 +6,27 @@ export default async function handler(req, res) {
     }
 
     const { id, name, category } = req.query;
-    console.log('req.query:', req.query);
-    
-    console.log('id:', id);
-    console.log('name:', name);
-    console.log('category:', category);
-
 
     try {
-        let query = sql.from('recetas').select('*');
+        let result;
 
         if (id) {
-            query = query.eq('id', id);
+            result = await sql`SELECT * FROM recetas WHERE id = ${id}`;
         } else if (name) {
-            query = query.ilike('titulo', `%${name}%`);
+            result = await sql`SELECT * FROM recetas WHERE titulo ILIKE ${'%' + name + '%'}`;
         } else if (category) {
-            query = query.ilike('categoria', `%${category}%`);
+            result = await sql`SELECT * FROM recetas WHERE categoria ILIKE ${'%' + category + '%'}`;
         } else {
             return res.status(400).json({ error: 'Falta parámetro id, name o category' });
         }
 
-        const { data, error } = await query;
-
-        if (error) throw error;
-
-        if (!data || data.length === 0) {
+        if (!result || result.length === 0) {
             return res.status(404).json({ error: 'No se encontraron resultados' });
         }
 
-        return res.status(200).json(data);
-
+        return res.status(200).json(result);
     } catch (error) {
-        console.error('Error en API /api/recetas:', error);
+        console.error('Error en API:', error);
         return res.status(500).json({ error: 'Error interno del servidor' });
     }
 }
