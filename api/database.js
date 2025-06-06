@@ -1,4 +1,4 @@
-import { supabase } from './supabase.js';
+import { sql } from './supabase.js';
 
 export default async function handler(req, res) {
     if (req.method !== 'GET') {
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
 
     try {
-        let query = supabase.from('recetas').select('*');
+        let query = sql.from('recetas').select('*');
 
         if (id) {
             query = query.eq('id', id);

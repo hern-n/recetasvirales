@@ -6,6 +6,6 @@ if (!connectionString) {
     throw new Error('Falta la variable de entorno DATABASE_URL');
 }
 
-const supabase = postgres(connectionString);
+const sql = postgres(connectionString);
 
-export default supabase;
+export default sql;
