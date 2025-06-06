@@ -37,7 +37,7 @@ function crearPaginaReceta(receta) {
     // 🔘 Botón de compartir
     const botonCompartir = document.createElement("button");
     botonCompartir.className = "boton-compartir";
-    botonCompartir.innerHTML = `<img src="../resources/compartir.png" alt="Compartir" />`;
+    botonCompartir.innerHTML = `<img src="../resources/logos/compartir.png" alt="Compartir" />`;
 
     // 🧱 Título + botón en línea
     const tituloCompartir = document.createElement("div");

@@ -164,21 +164,9 @@ export async function contactDatabase(parameter) {
             throw new Error(`Error ${res.status}: ${text}`);
         }
         const json = await res.json();
-        return json.data; // aquí devuelves solo el array de recetas
+        return json; // ✅ Devuelve directamente el array de recetas
     } catch (err) {
         console.error("Error en contactDatabase:", err);
         throw err;
     }
-}
-
-
-export function convertData(rawData) {
-    return rawData.map(receta => {
-        return {
-            ...receta,
-            ingredientes: JSON.parse(receta.ingredientes),
-            pasos: JSON.parse(receta.pasos),
-            fotos: JSON.parse(receta.fotos)
-        };
-    });
 }

@@ -9,7 +9,9 @@ function renderRecetas(data) {
         card.className = 'receta-card';
 
         // Obtener la imagen
-        const imagenSrc = JSON.parse(receta.fotos)[0] || 'placeholder.jpg';
+        const fotos = typeof receta.fotos === 'string' ? JSON.parse(receta.fotos) : receta.fotos;
+        const imagenSrc = fotos[0] || 'placeholder.jpg';
+
         const img = document.createElement('img');
         img.src = imagenSrc;
         img.alt = receta.titulo;
@@ -75,6 +77,7 @@ if (params.has('id')) {
 
 await contactDatabase(url)
     .then(data => {
+        console.log("Recetas recibidas:", data);
         if (!data || data.length === 0) {
             mostrarNoRecetas();
         } else {
