@@ -8,43 +8,43 @@ function renderRecetas(data) {
         const card = document.createElement('div');
         card.className = 'receta-card';
 
-        // Obtener la imagen
-        const fotos = typeof receta.fotos === 'string' ? JSON.parse(receta.fotos) : receta.fotos;
-        const imagenSrc = fotos[0] || 'placeholder.jpg';
+        // Fotos vienen directamente como array JSON
+        const fotos = Array.isArray(receta.fotos) ? receta.fotos : [];
+
+        // Buscar la primera URL válida que no sea 'place_holder'
+        let imagenSrc = fotos.find(foto => foto !== 'place_holder');
+
+        // Si no hay ninguna foto válida, usar placeholder
+        if (!imagenSrc) {
+            imagenSrc = 'placeholder.jpg';
+        }
 
         const img = document.createElement('img');
         img.src = imagenSrc;
         img.alt = receta.titulo;
 
-        // Crear el contenedor de info
         const infoDiv = document.createElement('div');
         infoDiv.className = 'receta-info';
 
-        // Título
         const tituloDiv = document.createElement('div');
         tituloDiv.className = 'receta-titulo';
         tituloDiv.textContent = receta.titulo;
 
-        // Tiempo
         const tiempoDiv = document.createElement('div');
         tiempoDiv.className = 'receta-tiempo';
         tiempoDiv.textContent = `🕒 ${receta.tiempo_preparacion}`;
 
-        // Personas
         const personasDiv = document.createElement('div');
         personasDiv.className = 'receta-personas';
         personasDiv.textContent = `👥 ${receta.personas} personas`;
 
-        // Añadir elementos al infoDiv
         infoDiv.appendChild(tituloDiv);
         infoDiv.appendChild(tiempoDiv);
         infoDiv.appendChild(personasDiv);
 
-        // Añadir imagen e infoDiv a la card
         card.appendChild(img);
         card.appendChild(infoDiv);
 
-        // Evento click para redirigir con el id
         card.onclick = () => {
             const idCodificado = encodeURIComponent(receta.id);
             window.location.href = `../TemplatePage/index.html?id=${idCodificado}`;
@@ -55,7 +55,6 @@ function renderRecetas(data) {
 
     document.body.appendChild(container);
 }
-
 
 createTaskBar();
 
