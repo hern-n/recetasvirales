@@ -1,4 +1,4 @@
-export function createTaskBar() {
+export function createTaskBar(container) {
     const header = document.createElement("header");
     header.className = "header";
 
@@ -58,7 +58,7 @@ export function createTaskBar() {
 
     header.appendChild(headerTop);
 
-    document.body.appendChild(header);
+    (container ? container : document.body).appendChild(header);
 }
 
 export function createFooter() {
@@ -169,4 +169,37 @@ export async function contactDatabase(parameter) {
         console.error("Error en contactDatabase:", err);
         throw err;
     }
+}
+
+export async function showLoader() {
+    // Cargar el CSS
+    const cssLink = document.createElement("link");
+    cssLink.rel = "stylesheet";
+    cssLink.href = "./resources/loader.css"; // Asegúrate de que loader.css esté en la misma carpeta o ajusta la ruta
+    document.head.appendChild(cssLink);
+
+    // Crear el HTML del loader directamente
+    const wrapper = document.createElement("div");
+    wrapper.className = "loadingio-spinner-dual-ring-nq4q5u6dq7r";
+
+    const innerDiv = document.createElement("div");
+    innerDiv.className = "ldio-x2uulkbinbj";
+
+    const circle1 = document.createElement("div");
+
+    const circle2 = document.createElement("div");
+    const mini = document.createElement("div");
+
+    circle2.appendChild(mini);
+    innerDiv.appendChild(circle1);
+    innerDiv.appendChild(circle2);
+    wrapper.appendChild(innerDiv);
+
+    wrapper.id = "loader-wrapper";
+    document.body.appendChild(wrapper);
+}
+
+export function hideLoader() {
+    const el = document.getElementById("loader-wrapper");
+    if (el) el.remove();
 }

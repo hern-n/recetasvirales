@@ -1,6 +1,6 @@
-import { contactDatabase, createTaskBar, createFooter } from "../functions.js";
+import { contactDatabase, createTaskBar, createFooter, showLoader, hideLoader } from "../functions.js";
 
-function createButtonTaskBar() {
+function createButtonTaskBar(container) {
     const headerBottom = document.createElement("nav");
     headerBottom.className = "nav";
 
@@ -19,10 +19,10 @@ function createButtonTaskBar() {
         headerBottom.appendChild(link);
     });
 
-    document.body.appendChild(headerBottom);
+    container.appendChild(headerBottom);
 }
 
-function createHeroSection() {
+function createHeroSection(container) {
     const hero = document.createElement("section");
     hero.className = "hero";
 
@@ -59,16 +59,16 @@ function createHeroSection() {
     content.appendChild(buttons);
     hero.appendChild(content);
 
-    document.body.appendChild(hero);
+    container.appendChild(hero);
 }
 
-function createCategories() {
-    const container = document.createElement("div");
+function createCategories(container) {
+    const cont = document.createElement("div");
 
     const titulo = document.createElement("h2");
     titulo.className = "categorias-titulo";
     titulo.textContent = "Categorías populares";
-    container.appendChild(titulo);
+    cont.appendChild(titulo);
 
     const lista = document.createElement("div");
     lista.className = "categorias-lista";
@@ -95,7 +95,6 @@ function createCategories() {
         overlay.textContent = cat.nombre;
 
         card.onclick = () => {
-            // Codificamos la categoría para la URL y redirigimos
             const categoriaCodificada = encodeURIComponent(cat.nombre);
             window.location.href = `../searchPage/index.html?category=${categoriaCodificada}`;
         };
@@ -105,13 +104,100 @@ function createCategories() {
         lista.appendChild(card);
     });
 
-    container.appendChild(lista);
-    document.body.appendChild(container);
+    cont.appendChild(lista);
+    container.appendChild(cont);
 }
 
-createTaskBar();
-createButtonTaskBar();
-createHeroSection();
-createCategories();
-createFooter();
+function renderRecetas(container, data) {
+    const grid = document.createElement('div');
+    grid.className = "recetas-grid";
 
+    data.forEach(receta => {
+        const card = document.createElement('div');
+        card.className = 'receta-card';
+
+        const fotos = Array.isArray(receta.fotos) ? receta.fotos : [];
+        let imagenSrc = fotos.find(foto => foto !== 'place_holder') || 'placeholder.jpg';
+
+        const img = document.createElement('img');
+        img.src = imagenSrc;
+        img.alt = receta.titulo;
+
+        const infoDiv = document.createElement('div');
+        infoDiv.className = 'receta-info';
+
+        const tituloDiv = document.createElement('div');
+        tituloDiv.className = 'receta-titulo';
+        tituloDiv.textContent = receta.titulo;
+
+        const tiempoDiv = document.createElement('div');
+        tiempoDiv.className = 'receta-tiempo';
+        tiempoDiv.textContent = `🕒 ${receta.tiempo_preparacion}`;
+
+        const personasDiv = document.createElement('div');
+        personasDiv.className = 'receta-personas';
+        personasDiv.textContent = `👥 ${receta.personas} personas`;
+
+        infoDiv.appendChild(tituloDiv);
+        infoDiv.appendChild(tiempoDiv);
+        infoDiv.appendChild(personasDiv);
+
+        card.appendChild(img);
+        card.appendChild(infoDiv);
+
+        card.onclick = () => {
+            const idCodificado = encodeURIComponent(receta.id);
+            window.location.href = `../TemplatePage/index.html?id=${idCodificado}`;
+        };
+
+        grid.appendChild(card);
+    });
+
+    container.appendChild(grid);
+}
+
+async function createFeaturedRecepies(container) {
+    const mainContainer = document.createElement("div");
+
+    const title = document.createElement("h2");
+    title.textContent = "Recetas destacadas";
+    title.className = "categorias-titulo";
+    mainContainer.appendChild(title);
+    container.appendChild(mainContainer);
+
+    const receta = await contactDatabase("/api/database?random=2");
+    renderRecetas(container, receta);
+}
+
+function waitForImagesToLoad() {
+    const images = Array.from(document.images);
+    const promises = images.map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise(resolve => {
+            img.onload = img.onerror = resolve;
+        });
+    });
+    return Promise.all(promises);
+}
+
+async function renderPage() {
+    // Crear el contenedor principal
+    const mainContent = document.createElement('div');
+    mainContent.style.display = 'none';
+    document.body.insertBefore(mainContent, document.body.firstChild);
+
+    showLoader();
+
+    createTaskBar(mainContent);
+    createButtonTaskBar(mainContent);
+    createHeroSection(mainContent);
+    createCategories(mainContent);
+    await createFeaturedRecepies(mainContent);
+    await waitForImagesToLoad();
+    createFooter(mainContent);
+
+    hideLoader();
+    mainContent.style.display = 'block';
+}
+
+window.addEventListener('DOMContentLoaded', renderPage);

@@ -329,6 +329,7 @@ nav a:hover {
 
 /* Categorías */
 .categorias-titulo {
+    font-family: "Tsukimi Rounded";
     font-size: 2rem;
     font-weight: 800;
     color: #1c1c1c;
@@ -375,4 +376,59 @@ nav a:hover {
     color: white;
     font-weight: 600;
     font-size: 1.1rem;
+}
+
+.recetas-grid {
+    margin-top: 73px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding: 1rem;
+    font-family: san;
+    max-width: 1400px;
+}
+
+.receta-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.2s;
+}
+
+.receta-card:hover {
+    transform: translateY(-5px);
+}
+
+.receta-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.receta-info {
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex-grow: 1;
+}
+
+.receta-titulo {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+    font-family: "Tsukimi Rounded";
+}
+
+.receta-tiempo,
+.receta-personas {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0;
+    font-family: "Tsukimi Rounded";
 }
