@@ -34,18 +34,16 @@ function crearPaginaReceta(receta) {
     const info = document.createElement("div");
     info.className = "info-receta";
 
-    // 🔘 Botón de compartir
-    const botonCompartir = document.createElement("button");
-    botonCompartir.className = "boton-compartir";
-    botonCompartir.innerHTML = `<img src="../resources/logos/compartir.png" alt="Compartir" />`;
-
-    // 🧱 Título + botón en línea
     const tituloCompartir = document.createElement("div");
     tituloCompartir.className = "titulo-compartir";
 
     const titulo = document.createElement("h1");
     titulo.className = "titulo-receta";
     titulo.textContent = receta.titulo;
+
+    const botonCompartir = document.createElement("button");
+    botonCompartir.className = "boton-compartir";
+    botonCompartir.innerHTML = `<img src="../resources/logos/compartir.png" alt="Compartir" />`;
 
     tituloCompartir.appendChild(titulo);
     tituloCompartir.appendChild(botonCompartir);
@@ -56,29 +54,66 @@ function crearPaginaReceta(receta) {
     const personas = document.createElement("p");
     personas.innerHTML = `👥 Personas: <strong>${receta.personas}</strong>`;
 
+    // Ingredientes y utensilios
+    const seccionListas = document.createElement("div");
+    seccionListas.className = "listas-receta";
+
+    // Ingredientes
+    const ingredientesDiv = document.createElement("div");
+    ingredientesDiv.className = "lista";
+
     const ingredientesTitulo = document.createElement("h3");
     ingredientesTitulo.textContent = "Ingredientes:";
-
     const listaIngredientes = document.createElement("ul");
+
     receta.ingredientes.forEach(i => {
         const li = document.createElement("li");
         li.textContent = i;
         listaIngredientes.appendChild(li);
     });
 
+    ingredientesDiv.appendChild(ingredientesTitulo);
+    ingredientesDiv.appendChild(listaIngredientes);
+    seccionListas.appendChild(ingredientesDiv);
+
+    // Utensilios (si existen)
+    if (receta.utensilios) {
+        const utensiliosDiv = document.createElement("div");
+        utensiliosDiv.className = "lista";
+
+        const utensiliosTitulo = document.createElement("h3");
+        utensiliosTitulo.textContent = "Utensilios especiales:";
+        const listaUtensilios = document.createElement("ul");
+
+        for (const nombre in receta.utensilios) {
+            const enlace = receta.utensilios[nombre];
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = enlace;
+            a.target = "_blank";
+            a.textContent = nombre;
+            li.appendChild(a);
+            listaUtensilios.appendChild(li);
+        }
+
+        utensiliosDiv.appendChild(utensiliosTitulo);
+        utensiliosDiv.appendChild(listaUtensilios);
+        seccionListas.appendChild(utensiliosDiv);
+    }
+
+    // Agregamos todo
     info.appendChild(tituloCompartir);
     info.appendChild(tiempo);
     info.appendChild(personas);
-    info.appendChild(ingredientesTitulo);
-    info.appendChild(listaIngredientes);
+    info.appendChild(seccionListas);
 
     const encabezado = document.createElement("div");
     encabezado.className = "encabezado-receta";
     encabezado.appendChild(galeria);
     encabezado.appendChild(info);
-
     contenedor.appendChild(encabezado);
 
+    // Pasos
     const pasos = document.createElement("div");
     pasos.className = "pasos";
 
@@ -104,7 +139,7 @@ function crearPaginaReceta(receta) {
     contenedor.appendChild(pasos);
     body.appendChild(contenedor);
 
-    // 🪟 Overlay y modal
+    // Compartir
     const overlay = document.createElement("div");
     overlay.className = "overlay-compartir";
     overlay.style.display = "none";
@@ -114,39 +149,35 @@ function crearPaginaReceta(receta) {
     modal.innerHTML = `
         <h2>Compartir</h2>
         <div class="opciones-compartir">
-            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(window.location.href)}" target="_blank" title="Compartir por WhatsApp">
+            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(window.location.href)}" target="_blank">
                 <img src="../resources/logos/whatsapp.png" alt="WhatsApp" />
             </a>
-            <a href="mailto:?subject=¡Mira esta receta!&body=${encodeURIComponent(window.location.href)}" title="Compartir por correo">
+            <a href="mailto:?subject=¡Mira esta receta!&body=${encodeURIComponent(window.location.href)}">
                 <img src="../resources/logos/correo.png" alt="Correo" />
             </a>
-            <a href="https://www.instagram.com/" target="_blank" title="Compartir en Instagram">
+            <a href="https://www.instagram.com/" target="_blank">
                 <img src="../resources/logos/instagram.png" alt="Instagram" />
             </a>
-            <button id="copiar-enlace" title="Copiar enlace">
+            <button id="copiar-enlace">
                 <img src="../resources/logos/enlace.png" alt="Copiar enlace" />
             </button>
         </div>
     `;
-
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
 
-    // 📋 Copiar enlace
     modal.querySelector("#copiar-enlace").addEventListener("click", () => {
         navigator.clipboard.writeText(window.location.href).then(() => {
             alert("¡Enlace copiado!");
         });
     });
 
-    // ❌ Cerrar al pulsar fuera
     overlay.addEventListener("click", (e) => {
         if (e.target === overlay) {
             overlay.style.display = "none";
         }
     });
 
-    // Abrir modal
     botonCompartir.addEventListener("click", () => {
         overlay.style.display = "flex";
     });

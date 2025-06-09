@@ -423,3 +423,35 @@ body {
 .opciones-compartir button:hover img {
     transform: scale(1.1);
 }
+
+.listas-receta {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.listas-receta > div {
+    flex: 1;
+    min-width: 200px;
+}
+
+.listas-receta h3 {
+    margin-bottom: 0.5rem;
+    color: #fc6a03;
+}
+
+.listas-receta ul {
+    list-style-type: disc;
+    padding-left: 1.2rem;
+}
+
+.listas-receta a {
+    color: #0077cc;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.listas-receta a:hover {
+    color: #005299;
+    text-decoration: underline;
+}
