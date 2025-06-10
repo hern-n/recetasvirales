@@ -52,7 +52,7 @@ function crearPaginaReceta(receta) {
     tiempo.innerHTML = `🕒 Tiempo: <strong>${receta.tiempo_preparacion}</strong>`;
 
     const personas = document.createElement("p");
-    personas.innerHTML = `👥 Personas: <strong>${receta.personas}</strong>`;
+    personas.innerHTML = `🍽️ Raciones: <strong>${receta.raciones}</strong>`;
 
     // Ingredientes y utensilios
     const seccionListas = document.createElement("div");

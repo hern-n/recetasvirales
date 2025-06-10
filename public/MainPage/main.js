@@ -136,7 +136,7 @@ function renderRecetas(container, data) {
 
         const personasDiv = document.createElement('div');
         personasDiv.className = 'receta-personas';
-        personasDiv.textContent = `👥 ${receta.personas} personas`;
+        personasDiv.textContent = `👥 ${receta.raciones} raciones`;
 
         infoDiv.appendChild(tituloDiv);
         infoDiv.appendChild(tiempoDiv);
