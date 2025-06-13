@@ -329,6 +329,7 @@ nav a:hover {
 
 /* Categorías */
 .categorias-titulo {
+    margin-left: 10px;
     font-family: "Tsukimi Rounded";
     font-size: 2rem;
     font-weight: 800;
@@ -380,6 +381,7 @@ nav a:hover {
 
 .recetas-grid {
     margin-top: 73px;
+    margin-left: 40px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;

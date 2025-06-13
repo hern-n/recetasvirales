@@ -4,18 +4,31 @@ function createButtonTaskBar(container) {
     const headerBottom = document.createElement("nav");
     headerBottom.className = "nav";
 
-    [
-        "Inicio",
-        "Categorías",
-        "Recetas populares",
-        "Recetas rápidas",
-        "Cocina internacional",
-        "Postres",
-        "Saludable"
-    ].forEach(text => {
+    // Diccionario con el texto del enlace como clave y el ID como valor
+    const secciones = {
+        "Categorías": "categorias",
+        "Recetas populares": "recetas_destacadas",
+        "Recetas rápidas": null,
+        "Cocina internacional": null,
+        "Postres": null,
+        "Saludable": null,
+        "Inicio": null
+    };
+
+    // Recorremos el diccionario
+    Object.entries(secciones).forEach(([texto, idDestino]) => {
         const link = document.createElement("a");
         link.href = "#";
-        link.textContent = text;
+        link.textContent = texto;
+
+        // Solo añadimos evento si tiene un ID asociado
+        if (idDestino) {
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+                window.location.href = "#" + idDestino;
+            });
+        }
+
         headerBottom.appendChild(link);
     });
 
@@ -52,6 +65,7 @@ function createHeroSection(container) {
     const crearCuenta = document.createElement("button");
     crearCuenta.textContent = "Crear cuenta";
     crearCuenta.className = "crear-cuenta-btn";
+    crearCuenta.id = "categorias";
 
     buttons.appendChild(explorar);
     buttons.appendChild(crearCuenta);
@@ -103,7 +117,7 @@ function createCategories(container) {
         card.appendChild(overlay);
         lista.appendChild(card);
     });
-
+    lista.id = "recetas_destacadas"; 
     cont.appendChild(lista);
     container.appendChild(cont);
 }
@@ -198,6 +212,16 @@ async function renderPage() {
 
     hideLoader();
     mainContent.style.display = 'block';
+
+    // 👇 Scroll suave al elemento si hay hash en la URL
+    const hash = window.location.hash;
+    if (hash) {
+        const el = document.querySelector(hash);
+        if (el) {
+            el.scrollIntoView({ behavior: "smooth" });
+        }
+    }
 }
+
 
 window.addEventListener('DOMContentLoaded', renderPage);

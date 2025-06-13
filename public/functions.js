@@ -72,7 +72,7 @@ export function createFooter() {
     logoSection.className = "footer-logo-section";
 
     const logo = document.createElement("h2");
-    logo.textContent = "CocinaFácil";
+    logo.textContent = "RecetasVirales";
     logo.className = "footer-logo";
     logoSection.appendChild(logo);
 
@@ -81,6 +81,25 @@ export function createFooter() {
     logoSection.appendChild(description);
 
     top.appendChild(logoSection);
+
+    // Aquí defines los enlaces con su id o URL
+    const enlacesConDestino = {
+        "Inicio": null,
+        "Categorías": "/MainPage/index.html#categorias",
+        "Recetas populares": "#recetas_destacadas",
+        "Recetas rápidas": null,
+        "Subir receta": null,
+        "Desayunos": "/MainPage/index.html#categorias",
+        "Comidas": "/MainPage/index.html#categorias",
+        "Cenas": "/MainPage/index.html#categorias",
+        "Postres": "/MainPage/index.html#categorias",
+        "Bebidas": "/MainPage/index.html#categorias",
+        "Centro de ayuda": null,
+        "Contacto": null,
+        "Política de privacidad": null,
+        "Términos y condiciones": null,
+        "Política de cookies": null
+    };
 
     [
         {
@@ -105,8 +124,18 @@ export function createFooter() {
 
         section.enlaces.forEach(item => {
             const a = document.createElement("a");
-            a.href = "#";
             a.textContent = item;
+            a.href = "#"; // Por defecto
+
+            // Si tiene destino definido y no es null, añade el listener para evitar el salto y cambiar URL
+            const destino = enlacesConDestino[item];
+            if (destino) {
+                a.addEventListener("click", e => {
+                    e.preventDefault();
+                    window.location.href = destino;
+                });
+            }
+
             div.appendChild(a);
         });
 
@@ -126,7 +155,7 @@ export function createFooter() {
     legal.className = "footer-legal";
 
     const copy = document.createElement("p");
-    copy.innerHTML = "© 2025 <a href=\"#\">CocinaFácil</a>. Todos los derechos reservados.";
+    copy.innerHTML = "© 2025 <a href=\"#\">RecetasVirales</a>. Todos los derechos reservados.";
     legal.appendChild(copy);
 
     const links = document.createElement("div");
@@ -154,7 +183,6 @@ export function createFooter() {
 
     document.body.appendChild(footer);
 }
-
 
 export async function contactDatabase(parameter) {
     try {
