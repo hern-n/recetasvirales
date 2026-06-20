@@ -1,6 +1,7 @@
 import express from 'express';
 import handler from './api/server.js';
 import databaseHandler from './api/database.js';
+import logoHandler from './api/logo.js';
 import { join, extname } from 'path';
 import { readFileSync, existsSync } from 'fs';
 
@@ -8,6 +9,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use('/api/database', databaseHandler);
+
+app.use('/api/logo', logoHandler);
 
 app.use('/api/server', handler);
 
