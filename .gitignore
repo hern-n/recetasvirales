@@ -42,3 +42,9 @@ pnpm-lock.yaml
 
 prueba.js
 .vercel
+
+# Base de datos de backup y almacenamiento local
+Database/
+
+# Scripts temporales de diagnostico
+_check_db.js
