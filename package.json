@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "dev": "node --watch dev.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -18,5 +20,8 @@
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.2",
     "postgres": "^3.4.7"
+  },
+  "devDependencies": {
+    "supabase": "^2.107.0"
   }
 }
